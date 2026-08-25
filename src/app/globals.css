@@ -4,24 +4,34 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =========================================================
-   ALDEORA CREATIVE — Brand Design System
-   Black #0A0A0A · Blue #1557B0 · Gold #C9A227 · White #FFFFFF
+   ALDEORA CREATIVE — Editorial Design System
+   Inspired by Awwwards beauty SOTDs (Truekind, Koba) +
+   Behance luxury creative agency portfolios.
+
+   Principles:
+   - Disciplined palette: black/white as primary, blue + gold
+     as restrained accents (gold especially used sparingly)
+   - Editorial typography: Fraunces (serif display) + Inter
+   - Generous whitespace, asymmetric grids, larger imagery
+   - Real video embeds over decorative graphics
    ========================================================= */
 
 @theme inline {
   /* Brand palette */
-  --color-ink: #0A0A0A;        /* Black */
+  --color-ink: #0A0A0A;
   --color-ink-soft: #141414;
   --color-ink-mute: #1C1C1C;
-  --color-royal: #1557B0;      /* Blue */
+  --color-ink-line: #2A2A2A;
+  --color-royal: #1557B0;
   --color-royal-soft: #2A6BC4;
   --color-royal-deep: #0F4490;
-  --color-gold: #C9A227;       /* Gold */
+  --color-gold: #C9A227;
   --color-gold-soft: #D8B84F;
   --color-gold-deep: #A88517;
-  --color-paper: #FFFFFF;      /* White */
+  --color-paper: #FFFFFF;
   --color-paper-soft: #FAFAFA;
   --color-paper-mute: #F4F4F4;
+  --color-paper-line: #ECECEC;
 
   /* shadcn tokens remapped to brand */
   --color-background: var(--background);
@@ -43,37 +53,19 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  /* Typography */
   --font-sans: var(--font-inter);
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
-  /* Custom keyframe animations */
-  --animate-marquee: marquee 38s linear infinite;
-  --animate-shimmer: shimmer 2.4s linear infinite;
-  --animate-pulse-gold: pulseGold 3s ease-in-out infinite;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes pulseGold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.35); }
-  50%      { box-shadow: 0 0 0 14px rgba(201, 162, 39, 0); }
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
   --background: #FFFFFF;
   --foreground: #0A0A0A;
   --card: #FFFFFF;
@@ -89,8 +81,8 @@
   --accent: #1557B0;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E8E8E8;
-  --input: #E8E8E8;
+  --border: #ECECEC;
+  --input: #ECECEC;
   --ring: #1557B0;
 }
 
@@ -128,25 +120,28 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.01em;
   }
   ::selection {
-    background: #C9A227;
-    color: #0A0A0A;
+    background: #0A0A0A;
+    color: #C9A227;
   }
-  h1, h2, h3, h4, h5 {
+  h1, h2, h3, h4 {
     font-feature-settings: "ss01", "liga";
+    letter-spacing: -0.025em;
   }
 }
 
 /* ============== Utility classes ============== */
 .font-display {
   font-family: var(--font-display), Georgia, serif;
+  font-feature-settings: "ss01", "ss02", "liga";
 }
 
 .text-balance { text-wrap: balance; }
 .text-pretty  { text-wrap: pretty; }
 
-/* Premium gold gradient text */
+/* Premium gold gradient text — used sparingly */
 .text-gold-gradient {
   background: linear-gradient(120deg, #C9A227 0%, #E8D58A 45%, #C9A227 100%);
   -webkit-background-clip: text;
@@ -154,23 +149,11 @@
   color: transparent;
 }
 
-/* Subtle grain / noise overlay for premium feel */
+/* Subtle grain — only on dark hero sections */
 .bg-grain {
   background-image:
     radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
   background-size: 3px 3px;
-}
-
-/* Thin top hairline */
-.hairline {
-  position: relative;
-}
-.hairline::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  pointer-events: none;
 }
 
 /* Custom scrollbar */
@@ -184,7 +167,7 @@
   background: rgba(255,255,255,0.16);
 }
 
-/* Link underline animation */
+/* Animated link underline */
 .link-underline {
   position: relative;
 }
@@ -211,10 +194,10 @@
   will-change: transform;
 }
 .card-lift:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 
-/* Button shine sweep */
+/* Button shine sweep — used sparingly on primary CTAs */
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -226,9 +209,9 @@
   left: -120%;
   width: 80%;
   height: 100%;
-  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.30) 50%, transparent 100%);
   transform: skewX(-20deg);
-  transition: left .7s cubic-bezier(.2,.8,.2,1);
+  transition: left .8s cubic-bezier(.2,.8,.2,1);
 }
 .btn-shine:hover::before {
   left: 130%;
@@ -237,10 +220,46 @@
 /* Section divider */
 .divider-gold {
   height: 1px;
-  width: 64px;
-  background: linear-gradient(90deg, transparent, #C9A227, transparent);
+  width: 48px;
+  background: linear-gradient(90deg, #C9A227, transparent);
 }
 
-/* No-scrollbar for filter pills row */
+/* No-scrollbar */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Editorial number marker */
+.editorial-num {
+  font-family: var(--font-display), Georgia, serif;
+  font-feature-settings: "ss01", "lnum";
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Image cover — smooth fade-in on load */
+.img-cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Hide default image alt flicker before fade */
+.img-fade {
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+.img-fade.img-loaded {
+  opacity: 1;
+}
+
+/* Editorial section spacing for asymmetric layouts */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .editorial-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+}

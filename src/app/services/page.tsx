@@ -12,12 +12,14 @@ import {
   Globe,
   Lightbulb,
   Check,
+  Play,
 } from "lucide-react";
 import { Container, Section, Eyebrow, SectionHeading } from "@/components/site/Section";
 import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHeader } from "@/components/site/PageHeader";
-import { SERVICES, WA_DEFAULT } from "@/lib/site";
+import { VideoEmbed } from "@/components/site/VideoEmbed";
+import { SERVICES, WA_DEFAULT, PROJECTS } from "@/lib/site";
 
 const serviceIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   Video,
@@ -35,7 +37,7 @@ export default function ServicesPage() {
         title={
           <>
             Creative content for{" "}
-            <span className="text-gold-gradient italic">modern</span> beauty &
+            <span className="italic text-gold">modern</span> beauty &
             wellness brands.
           </>
         }
@@ -51,16 +53,12 @@ export default function ServicesPage() {
         </div>
       </PageHeader>
 
-      {/* AI VIDEO — primary, large feature */}
       <ServiceFeature />
 
-      {/* WEB DESIGN + DIGITAL SOLUTIONS — secondary, paired */}
       <ServiceSecondary />
 
-      {/* Process */}
       <ProcessSection />
 
-      {/* Final CTA */}
       <FinalServicesCTA />
     </>
   );
@@ -68,7 +66,9 @@ export default function ServicesPage() {
 
 function ServiceFeature() {
   const aiVideo = SERVICES.find((s) => s.id === "ai-video")!;
-  const Icon = serviceIcons[aiVideo.icon] ?? Video;
+  // Reference film for AI Video service — Tom Ford / luxury beauty campaign
+  const reference = PROJECTS.find((p) => p.id === "p10")!;
+
   return (
     <Section tone="light">
       <Container>
@@ -76,13 +76,13 @@ function ServiceFeature() {
           {/* Left: copy */}
           <div className="lg:col-span-6">
             <Reveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-gold-deep">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gold/10 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-deep">
                 <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                 Flagship Service
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
+              <h2 className="mt-5 font-display text-3xl font-light leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-[44px]">
                 {aiVideo.title}
               </h2>
             </Reveal>
@@ -92,12 +92,12 @@ function ServiceFeature() {
               </p>
             </Reveal>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2">
               {aiVideo.items.map((item, i) => {
                 const ItemIcon = subItemIcons[i % subItemIcons.length];
                 return (
-                  <Reveal key={item} delay={0.12 + i * 0.05}>
-                    <div className="group flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 transition-colors hover:border-gold/40">
+                  <Reveal key={item} delay={0.12 + i * 0.04}>
+                    <div className="group flex items-center gap-3 bg-white p-4 transition-colors hover:bg-paper-soft">
                       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink text-gold transition-colors group-hover:bg-gold group-hover:text-ink">
                         <ItemIcon className="h-4 w-4" />
                       </span>
@@ -117,76 +117,37 @@ function ServiceFeature() {
             </Reveal>
           </div>
 
-          {/* Right: visual */}
+          {/* Right: real reference video */}
           <div className="lg:col-span-6">
             <Reveal delay={0.1}>
-              <ServiceVisual />
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                    Reference Film · {reference.category}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-deep">
+                    {reference.format}
+                  </span>
+                </div>
+                <VideoEmbed
+                  videoId={reference.videoId}
+                  title={reference.title}
+                  aspect="portrait"
+                  label={reference.tag}
+                  className="ring-1 ring-black/[0.06]"
+                />
+                <p className="mt-3 font-display text-base font-medium tracking-tight text-ink">
+                  {reference.title}
+                </p>
+                <p className="mt-0.5 text-[11px] text-ink/45">
+                  Example of the style &amp; quality our AI Video service produces.
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>
       </Container>
     </Section>
-  );
-}
-
-function ServiceVisual() {
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-3xl border border-black/5 bg-ink shadow-[0_40px_120px_-30px_rgba(0,0,0,0.5)]">
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(80% 60% at 30% 20%, rgba(201,162,39,0.3), transparent 55%), radial-gradient(70% 50% at 80% 90%, rgba(21,87,176,0.4), transparent 55%), #0A0A0A",
-        }}
-      />
-      <div className="bg-grain absolute inset-0 opacity-40" />
-
-      {/* Grid of mini cards */}
-      <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-3 p-6">
-        {[
-          { label: "Reels", icon: Film, accent: "gold" },
-          { label: "TikTok", icon: Smartphone, accent: "blue" },
-          { label: "Shorts", icon: Video, accent: "gold" },
-          { label: "Story", icon: BookIcon, accent: "blue" },
-          { label: "Ad", icon: Sparkles, accent: "gold" },
-          { label: "Brand", icon: Palette, accent: "blue" },
-          { label: "Educate", icon: Lightbulb, accent: "gold" },
-          { label: "Launch", icon: Wand2, accent: "blue" },
-          { label: "UGC", icon: Mic, accent: "gold" },
-        ].map((cell, i) => {
-          const Icon = cell.icon;
-          const color = cell.accent === "gold" ? "#C9A227" : "#1557B0";
-          return (
-            <Reveal key={cell.label} delay={i * 0.04}>
-              <div className="flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-colors hover:bg-white/10">
-                <Icon className="h-4 w-4" style={{ color }} />
-                <span className="text-[10px] uppercase tracking-[0.18em] text-white/70">
-                  {cell.label}
-                </span>
-              </div>
-            </Reveal>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-// inline BookIcon (avoid extra import name clash)
-function BookIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path d="M4 4v16a2 2 0 0 0 2 2h14V4H6a2 2 0 0 0-2 2z" />
-      <path d="M9 8h6M9 12h6" />
-    </svg>
-  );
-}
-function Mic({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="9" y="2" width="6" height="12" rx="3" />
-      <path d="M5 11a7 7 0 0 0 14 0M12 19v3" />
-    </svg>
   );
 }
 
@@ -210,26 +171,26 @@ function ServiceSecondary() {
             const Icon = serviceIcons[service.icon] ?? Sparkles;
             return (
               <Reveal key={service.id} delay={i * 0.1}>
-                <article className="card-lift group relative h-full overflow-hidden rounded-2xl border border-black/5 bg-white p-8 hover:border-royal/30 hover:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.25)]">
+                <article className="card-lift group relative h-full overflow-hidden rounded-2xl border border-black/[0.06] bg-white p-8 hover:border-royal/20 hover:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.2)]">
                   <div className="flex items-start justify-between gap-4">
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-gold transition-all duration-500 group-hover:bg-royal group-hover:text-white">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span className="font-display text-4xl font-bold text-paper-mute">
+                    <span className="editorial-num text-3xl text-paper-mute group-hover:text-gold/30">
                       0{i + 2}
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-ink">
+                  <h3 className="mt-5 font-display text-2xl font-medium tracking-tight text-ink">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink/65">
+                  <p className="mt-3 text-sm leading-relaxed text-ink/60">
                     {service.description}
                   </p>
                   <ul className="mt-6 space-y-2.5">
                     {service.items.map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-sm text-ink/75">
+                      <li key={item} className="flex items-center gap-3 text-sm text-ink/70">
                         <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-royal/10 text-royal">
-                          <Check className="h-3 w-3" />
+                          <Check className="h-3 w-3" strokeWidth={3} />
                         </span>
                         {item}
                       </li>
@@ -272,17 +233,17 @@ function ProcessSection() {
           description="Four steps designed to make premium creative production feel effortless on your side."
         />
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <Reveal key={step.n} delay={i * 0.08}>
-              <div className="group relative h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-gold/40 hover:bg-white/[0.06]">
+              <div className="group h-full bg-ink p-7 transition-colors duration-300 hover:bg-ink-soft">
                 <div className="flex items-baseline justify-between">
-                  <span className="font-display text-4xl font-bold text-gold/30 transition-colors group-hover:text-gold">
+                  <span className="editorial-num text-3xl text-gold/40 transition-colors group-hover:text-gold">
                     {step.n}
                   </span>
-                  <span className="h-px w-12 bg-gradient-to-r from-gold/40 to-transparent" />
+                  <span className="h-px w-10 bg-gradient-to-r from-gold/40 to-transparent" />
                 </div>
-                <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-white">
+                <h3 className="mt-5 font-display text-lg font-medium tracking-tight text-white">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/55">
@@ -301,9 +262,9 @@ function FinalServicesCTA() {
   return (
     <Section tone="light" className="py-16 sm:py-20">
       <Container>
-        <div className="flex flex-col items-center gap-6 rounded-3xl border border-black/5 bg-gradient-to-br from-paper-soft to-white p-10 text-center shadow-sm sm:p-14">
+        <div className="flex flex-col items-center gap-6 rounded-2xl border border-black/[0.06] bg-gradient-to-br from-paper-soft to-white p-10 text-center shadow-sm sm:p-14">
           <Eyebrow>Ready when you are</Eyebrow>
-          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight text-balance sm:text-4xl">
+          <h2 className="max-w-2xl font-display text-3xl font-light leading-tight tracking-tight text-balance sm:text-4xl">
             Let&apos;s build your next premium piece of content.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">

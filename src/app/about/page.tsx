@@ -1,12 +1,12 @@
 "use client";
 
-import { Sparkles, Cpu, Eye, Target, ShieldCheck } from "lucide-react";
+import { Sparkles, Cpu, Eye, Target, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { Container, Section, Eyebrow, SectionHeading } from "@/components/site/Section";
 import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHeader } from "@/components/site/PageHeader";
 import { LogoMark } from "@/components/site/Logo";
-import { BRAND, WA_DEFAULT } from "@/lib/site";
+import { BRAND, FOUNDER, WA_DEFAULT } from "@/lib/site";
 
 export default function AboutPage() {
   return (
@@ -15,165 +15,205 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            About <span className="text-gold-gradient italic">Aldeora Creative</span>.
+            About <span className="italic text-gold">Aldeora Creative</span>.
           </>
         }
         description="A creative studio focused on helping modern brands communicate through visual content, AI video, web design and digital solutions."
       />
 
-      {/* Intro */}
-      <Section tone="light">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <Eyebrow>Who we are</Eyebrow>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
-                  A creative studio built for the way modern brands communicate.
-                </h2>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <div className="mt-6 space-y-5 text-base leading-relaxed text-ink/70 sm:text-lg">
-                  <p>
-                    Aldeora Creative is a creative studio focused on helping modern
-                    brands communicate through visual content, AI video, web design
-                    and digital solutions. We exist because beauty, wellness and
-                    self-care brands deserve content that matches the quality of
-                    what they make — without the cost and friction of traditional
-                    production.
-                  </p>
-                  <p>
-                    We combine creative direction, AI tooling and a strong sense of
-                    brand craft to produce video that feels premium, on-voice and
-                    built for the platforms your audience actually uses. Our work
-                    spans product, service, educational and brand-story formats —
-                    designed to look like the brands we partner with.
-                  </p>
-                  <p>
-                    We keep the process human. We listen first, direct with intent,
-                    and deliver work that&apos;s both beautiful and useful. No fluff,
-                    no filler — just craft that moves your brand forward.
-                  </p>
-                </div>
-              </Reveal>
+      {/* Founder feature — Adeyemi Gold */}
+      <FounderFeature />
 
-              <Reveal delay={0.2}>
-                <div className="mt-8">
-                  <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
-                    Work With Us
-                  </CTAButton>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Side panel */}
-            <div className="lg:col-span-5">
-              <Reveal delay={0.1}>
-                <div className="relative overflow-hidden rounded-3xl border border-black/5 bg-ink p-8 text-white shadow-[0_40px_120px_-30px_rgba(0,0,0,0.5)]">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "radial-gradient(80% 60% at 100% 0%, rgba(201,162,39,0.25), transparent 55%), radial-gradient(60% 50% at 0% 100%, rgba(21,87,176,0.3), transparent 55%)",
-                    }}
-                  />
-                  <div className="bg-grain absolute inset-0 opacity-40" />
-                  <div className="relative">
-                    <LogoMark className="h-12 w-12" />
-                    <p className="mt-6 font-display text-xl font-medium leading-snug">
-                      “We make premium creative production feel effortless — so your brand can show up like it should.”
-                    </p>
-                    <div className="mt-6 border-t border-white/10 pt-5">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
-                        Aldeora Creative
-                      </p>
-                      <p className="mt-1 text-xs text-white/55">
-                        {BRAND.tagline}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      {/* Studio story */}
+      <StudioStory />
 
       {/* Values */}
-      <Section tone="paper">
-        <Container>
-          <SectionHeading
-            align="center"
-            eyebrow="What We Stand For"
-            title={
-              <>
-                Five principles, <span className="italic text-royal">always</span>.
-              </>
-            }
-            className="mx-auto"
-          />
-
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {VALUES.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.08}>
-                <article className="card-lift group relative h-full overflow-hidden rounded-2xl border border-black/5 bg-white p-7 hover:border-gold/40 hover:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.25)]">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-gold transition-all duration-500 group-hover:bg-gold group-hover:text-ink">
-                    <v.icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-ink">
-                    {v.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/60">
-                    {v.desc}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <ValuesSection />
 
       {/* Who we serve */}
-      <Section tone="dark">
-        <Container>
-          <SectionHeading
-            tone="dark"
-            eyebrow="Who We Serve"
-            title={
-              <>
-                Built for <span className="italic text-gold">beauty, wellness & self-care</span>.
-              </>
-            }
-            description="We serve a broad spectrum of brands across the beauty, wellness and self-care ecosystem — not a single niche."
-          />
+      <WhoWeServe />
 
-          <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {WHO_WE_SERVE.map((label, i) => (
-              <Reveal key={label} delay={(i % 4) * 0.06}>
-                <div className="group flex h-full items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-gold/40 hover:bg-white/[0.06]">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                  <span className="text-sm font-medium text-white/85">{label}</span>
-                </div>
-              </Reveal>
-            ))}
+      {/* CTA */}
+      <FinalCTA />
+    </>
+  );
+}
+
+/* ---------------- FOUNDER FEATURE ---------------- */
+
+function FounderFeature() {
+  return (
+    <Section tone="light">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          {/* Photo */}
+          <div className="lg:col-span-5">
+            <Reveal>
+              <figure className="relative">
+                <img
+                  src={FOUNDER.photo}
+                  alt={`${FOUNDER.name} — ${FOUNDER.role}`}
+                  className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/[0.06]"
+                />
+                {/* Caption overlay */}
+                <figcaption className="mt-4 flex items-baseline justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold-deep">
+                      Founder · Creative Director
+                    </p>
+                    <p className="mt-1 font-display text-xl font-medium tracking-tight text-ink">
+                      {FOUNDER.name}
+                    </p>
+                  </div>
+                  <span className="editorial-num text-2xl text-ink/20">01</span>
+                </figcaption>
+              </figure>
+            </Reveal>
           </div>
 
-          <Reveal delay={0.2}>
-            <div className="mt-12 flex flex-col items-center gap-5 text-center">
-              <p className="max-w-xl text-sm text-white/65">
-                If your brand lives in the beauty, wellness or self-care space,
-                we&apos;d love to make content for you.
-              </p>
-              <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
-                Work With Us
-              </CTAButton>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-    </>
+          {/* Copy */}
+          <div className="lg:col-span-7">
+            <Reveal>
+              <Eyebrow>Who&apos;s behind the studio</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 font-display text-3xl font-light leading-[1.1] tracking-tight text-balance sm:text-4xl lg:text-[44px]">
+                {FOUNDER.name} founded Aldeora Creative to give beauty &amp; wellness brands the cinematic treatment they deserve.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="mt-7 space-y-5 text-[15px] leading-relaxed text-ink/65 sm:text-base">
+                {FOUNDER.longBio.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+            </Reveal>
+
+            {/* Quote pullout */}
+            <Reveal delay={0.15}>
+              <blockquote className="mt-8 border-l-2 border-gold pl-5">
+                <p className="font-display text-xl font-light italic leading-snug tracking-tight text-ink sm:text-2xl">
+                  {FOUNDER.quotes[0].text}
+                </p>
+                <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                  — {FOUNDER.name}, {FOUNDER.quotes[0].context}
+                </footer>
+              </blockquote>
+            </Reveal>
+
+            {/* Credentials */}
+            <Reveal delay={0.2}>
+              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-black/[0.06] pt-6 sm:grid-cols-4">
+                {FOUNDER.credentials.map((c) => (
+                  <div key={c.label}>
+                    <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/40">
+                      {c.label}
+                    </dt>
+                    <dd className="mt-1 text-sm font-medium text-ink">{c.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+
+            <Reveal delay={0.25}>
+              <div className="mt-8">
+                <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
+                  Work With {FOUNDER.name.split(" ")[0]}
+                </CTAButton>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+/* ---------------- STUDIO STORY ---------------- */
+
+function StudioStory() {
+  return (
+    <Section tone="paper">
+      <Container>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <Eyebrow>The studio</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 font-display text-3xl font-light leading-tight tracking-tight text-ink sm:text-4xl">
+                A studio built for the way modern brands communicate.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-8">
+            <Reveal delay={0.1}>
+              <div className="space-y-5 text-[15px] leading-relaxed text-ink/65 sm:text-base">
+                <p>
+                  Aldeora Creative exists because beauty, wellness and self-care
+                  brands deserve content that matches the quality of what they make —
+                  without the cost and friction of traditional production.
+                </p>
+                <p>
+                  We combine creative direction, AI tooling and a strong sense of
+                  brand craft to produce video that feels premium, on-voice and built
+                  for the platforms your audience actually uses. Our work spans product,
+                  service, educational and brand-story formats — designed to look like
+                  the brands we partner with.
+                </p>
+                <p>
+                  We keep the process human. We listen first, direct with intent, and
+                  deliver work that&apos;s both beautiful and useful. No fluff, no filler —
+                  just craft that moves your brand forward.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+/* ---------------- VALUES ---------------- */
+
+function ValuesSection() {
+  return (
+    <Section tone="light">
+      <Container>
+        <SectionHeading
+          eyebrow="What We Stand For"
+          title={
+            <>
+              Five principles, <span className="italic text-royal">always</span>.
+            </>
+          }
+        />
+
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-3">
+          {VALUES.map((v, i) => (
+            <Reveal key={v.title} delay={i * 0.06}>
+              <article className="group relative h-full bg-white p-7 transition-colors duration-300 hover:bg-paper-soft">
+                <div className="flex items-baseline justify-between">
+                  <span className="editorial-num text-2xl text-ink/25">
+                    0{i + 1}
+                  </span>
+                  <v.icon className="h-5 w-5 text-ink/40 transition-colors duration-300 group-hover:text-gold" />
+                </div>
+                <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-ink">
+                  {v.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/55">
+                  {v.desc}
+                </p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
   );
 }
 
@@ -205,6 +245,49 @@ const VALUES = [
   },
 ];
 
+/* ---------------- WHO WE SERVE ---------------- */
+
+function WhoWeServe() {
+  return (
+    <Section tone="dark">
+      <Container>
+        <SectionHeading
+          tone="dark"
+          eyebrow="Who We Serve"
+          title={
+            <>
+              Built for <span className="italic text-gold">beauty, wellness & self-care</span>.
+            </>
+          }
+          description="We serve a broad spectrum of brands across the beauty, wellness and self-care ecosystem — not a single niche."
+        />
+
+        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] sm:grid-cols-3 lg:grid-cols-4">
+          {WHO_WE_SERVE.map((label, i) => (
+            <Reveal key={label} delay={(i % 4) * 0.05}>
+              <div className="group flex h-full items-center gap-3 bg-ink p-5 transition-colors duration-300 hover:bg-ink-soft">
+                <span className="h-1 w-1 shrink-0 rounded-full bg-gold" />
+                <span className="text-sm font-medium text-white/85">{label}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.2}>
+          <div className="mt-12 flex flex-col items-center gap-5 text-center">
+            <p className="max-w-xl text-sm text-white/55">
+              If your brand lives in the beauty, wellness or self-care space, we&apos;d love to make content for you.
+            </p>
+            <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
+              Work With Us
+            </CTAButton>
+          </div>
+        </Reveal>
+      </Container>
+    </Section>
+  );
+}
+
 const WHO_WE_SERVE = [
   "Skincare brands",
   "Haircare brands",
@@ -223,3 +306,28 @@ const WHO_WE_SERVE = [
   "Related service brands",
   "Modern lifestyle brands",
 ];
+
+/* ---------------- FINAL CTA ---------------- */
+
+function FinalCTA() {
+  return (
+    <Section tone="light" className="py-16 sm:py-20">
+      <Container>
+        <div className="flex flex-col items-center gap-6 rounded-2xl border border-black/[0.06] bg-gradient-to-br from-paper-soft to-white p-10 text-center shadow-sm sm:p-14">
+          <LogoMark className="h-12 w-12" />
+          <h2 className="max-w-2xl font-display text-3xl font-light leading-tight tracking-tight text-balance sm:text-4xl">
+            Let&apos;s build something your audience can&apos;t scroll past.
+          </h2>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
+              Work With Us
+            </CTAButton>
+            <CTAButton href="/packages" size="lg" variant="secondary">
+              View Packages
+            </CTAButton>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+}

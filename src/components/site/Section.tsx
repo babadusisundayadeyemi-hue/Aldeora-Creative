@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 
@@ -9,7 +11,7 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8", className)}>
+    <div className={cn("mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12", className)}>
       {children}
     </div>
   );
@@ -51,12 +53,12 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.32em]",
-        tone === "dark" ? "text-gold" : "text-royal",
+        "inline-flex items-center gap-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.28em]",
+        tone === "dark" ? "text-gold" : "text-ink/55",
         className
       )}
     >
-      <span className="h-px w-8 bg-current opacity-60" />
+      <span className="h-px w-6 bg-current opacity-50" />
       {children}
     </span>
   );
@@ -80,7 +82,7 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         align === "center" && "items-center text-center",
         className
       )}
@@ -88,7 +90,7 @@ export function SectionHeading({
       {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
       <h2
         className={cn(
-          "font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl lg:text-5xl",
+          "font-display text-3xl font-light leading-[1.1] tracking-tight sm:text-4xl lg:text-[44px]",
           align === "center" && "max-w-3xl"
         )}
       >
@@ -97,8 +99,8 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed sm:text-lg",
-            tone === "dark" ? "text-white/70" : "text-ink/65",
+            "max-w-2xl text-[15px] leading-relaxed sm:text-base",
+            tone === "dark" ? "text-white/55" : "text-ink/55",
             align === "center" && "mx-auto"
           )}
         >

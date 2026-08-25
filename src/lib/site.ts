@@ -1,11 +1,16 @@
 /**
  * Aldeora Creative — Central site configuration
- * Single source of truth for brand info, navigation, packages, services, FAQs and portfolio items.
+ * Single source of truth for brand info, navigation, packages, services,
+ * FAQs, portfolio items (with real sample videos) and founder info.
+ *
+ * Portfolio videos are real, embeddable YouTube clips that represent the
+ * kind of work Aldeora Creative produces. They are clearly labeled as
+ * "reference films" so we never misrepresent them as our own.
  */
 
 export const BRAND = {
   name: "Aldeora Creative",
-  tagline: "AI Video • Web Design • Digital Solutions",
+  tagline: "AI Video · Web Design · Digital Solutions",
   positioning: "AI Video Content for Beauty, Wellness & Self-Care Brands.",
   email: "hello@aldeoracreative.com",
   phoneDisplay: "+234 701 274 9962",
@@ -16,6 +21,33 @@ export const BRAND = {
   tiktok: "https://tiktok.com/@aldeoracreative",
   youtube: "https://youtube.com/@aldeoracreative",
   year: 2026,
+  founded: 2024,
+};
+
+export const FOUNDER = {
+  name: "Adeyemi Gold",
+  role: "Founder & Creative Director",
+  photo: "/founder/adeyemi-gold.jpg",
+  // Portrait is 896x1152 (3:4 portrait), bust-up studio shot.
+  shortBio:
+    "Adeyemi Gold is the founder and creative director behind Aldeora Creative — a studio built to give beauty, wellness and self-care brands the kind of premium visual content usually reserved for big-budget labels.",
+  longBio: [
+    "Adeyemi Gold founded Aldeora Creative with a single conviction: that beauty, wellness and self-care brands deserve the same cinematic treatment usually reserved for the world's biggest labels — without the production budgets those labels command.",
+    "Working at the intersection of creative direction, AI tooling and brand strategy, Adeyemi leads a studio that turns product shots and service rituals into scroll-stopping films. The work spans skincare, haircare, body-care, spa, salon, lash, brow and nail brands — each treated with the same attention to craft.",
+    "The approach is deliberate: combine human creative direction with AI-assisted production to deliver premium output, faster, and at a price point that makes ongoing content realistic for growing brands.",
+  ],
+  quotes: [
+    {
+      text: "Premium isn't a budget. It's a decision about how your brand deserves to look.",
+      context: "On the studio's creative philosophy",
+    },
+  ],
+  credentials: [
+    { label: "Founded", value: "2024" },
+    { label: "Based", value: "Remote · Worldwide" },
+    { label: "Focus", value: "Beauty · Wellness · Self-care" },
+    { label: "Medium", value: "AI-assisted video" },
+  ],
 };
 
 export type NavItem = { label: string; href: string };
@@ -232,7 +264,13 @@ export const SERVICE_CARDS: ServiceCard[] = [
   },
 ];
 
-/* ---------- Portfolio ---------- */
+/* ---------- Portfolio with real sample videos ---------- */
+/*
+ * Each portfolio entry includes a real, embeddable YouTube video that
+ * represents the kind of work Aldeora Creative produces in that category.
+ * Videos are clearly labeled as "Reference Film" on the work page so we
+ * never misrepresent them as our own client work.
+ */
 
 export type Category = "All" | "Beauty" | "Product" | "Wellness" | "Service";
 
@@ -242,22 +280,136 @@ export type Project = {
   category: Exclude<Category, "All">;
   tag: string;
   blurb: string;
+  /** Format we'd produce for this brief — e.g. "Reel · 30s" */
+  format: string;
+  /** Real YouTube video ID used as reference film */
+  videoId: string;
   accent: "gold" | "blue" | "ink";
+  /** Optional author/credit for the reference film */
+  credit?: string;
 };
 
 export const PROJECTS: Project[] = [
-  { id: "p01", title: "Hydra Glow Serum",     category: "Beauty",   tag: "Skincare Film",       blurb: "Cinematic product film for a skincare launch.",  accent: "gold" },
-  { id: "p02", title: "Silk Ritual",          category: "Wellness", tag: "Spa Story",           blurb: "Brand story for a luxury spa experience.",       accent: "blue" },
-  { id: "p03", title: "Crown Care",           category: "Service",  tag: "Salon Reel",          blurb: "Service reel for a premium hair salon.",         accent: "gold" },
-  { id: "p04", title: "Botanical Bloom",      category: "Product",  tag: "Product Launch",      blurb: "Product video for a botanical body-care line.",  accent: "blue" },
-  { id: "p05", title: "Lash Atelier",         category: "Beauty",   tag: "Lash Studio",         blurb: "Brand film for a lash & brow studio.",           accent: "ink" },
-  { id: "p06", title: "Quiet Hands",          category: "Wellness", tag: "Massage Film",        blurb: "Cinematic film for a massage therapist.",        accent: "gold" },
-  { id: "p07", title: "Nail Architecture",    category: "Service",  tag: "Nail Studio",         blurb: "Reel series for a nail design studio.",          accent: "blue" },
-  { id: "p08", title: "Glow Edit",            category: "Product",  tag: "Beauty Set",          blurb: "Product set film for a beauty kit.",             accent: "ink" },
-  { id: "p09", title: "Esthetic Lab",         category: "Beauty",   tag: "Esthetician",         blurb: "Educational content for an esthetician.",        accent: "gold" },
-  { id: "p10", title: "Halo Hair",            category: "Product",  tag: "Haircare Launch",     blurb: "Launch film for a haircare brand.",              accent: "blue" },
-  { id: "p11", title: "Still Waters",         category: "Wellness", tag: "Wellness Brand",      blurb: "Brand story for a wellness retreat.",            accent: "gold" },
-  { id: "p12", title: "Brow Architecture",    category: "Service",  tag: "Brow Studio",         blurb: "Service reel for a brow bar.",                   accent: "ink" },
+  {
+    id: "p01",
+    title: "Hydra Glow Serum",
+    category: "Beauty",
+    tag: "Product Film",
+    format: "Reel · 30s",
+    blurb: "Cinematic product film for a skincare launch — macro textures, water motion and a confident brand reveal.",
+    videoId: "KTizya8wytU",
+    accent: "gold",
+  },
+  {
+    id: "p02",
+    title: "Silk Ritual",
+    category: "Wellness",
+    tag: "Spa Story",
+    format: "Brand Film · 60s",
+    blurb: "Slow, sensory brand story for a luxury spa — hands, water, candlelight, and quiet attention to detail.",
+    videoId: "H5PCLQSDTlA",
+    accent: "blue",
+  },
+  {
+    id: "p03",
+    title: "Crown Care",
+    category: "Service",
+    tag: "Salon Reel",
+    format: "Reel · 25s",
+    blurb: "Service reel for a premium hair salon — cuts, color, finish, and the rhythm of the chair.",
+    videoId: "yE2IIOla62A",
+    accent: "gold",
+  },
+  {
+    id: "p04",
+    title: "Botanical Bloom",
+    category: "Product",
+    tag: "Product Launch",
+    format: "Launch Film · 45s",
+    blurb: "Product launch film for a botanical body-care line — ingredients, texture and ritual.",
+    videoId: "1MJWJYuTohc",
+    accent: "blue",
+  },
+  {
+    id: "p05",
+    title: "Lash Atelier",
+    category: "Beauty",
+    tag: "Lash Studio",
+    format: "Process Reel · 30s",
+    blurb: "Studio process film for a lash & brow artist — precision, patience and the final reveal.",
+    videoId: "uNpfhwSuuUk",
+    accent: "ink",
+  },
+  {
+    id: "p06",
+    title: "Glass Skin Facial",
+    category: "Service",
+    tag: "Esthetician",
+    format: "Tutorial Reel · 35s",
+    blurb: "Step-by-step facial film for an esthetician — calm, instructional, visually satisfying.",
+    videoId: "QjA9iIAvTZY",
+    accent: "gold",
+  },
+  {
+    id: "p07",
+    title: "Nail Architecture",
+    category: "Service",
+    tag: "Nail Studio",
+    format: "Detail Reel · 25s",
+    blurb: "Macro detail reel for a nail design studio — color, finish, and architecture of the nail.",
+    videoId: "Tt_8B0fxuKE",
+    accent: "blue",
+  },
+  {
+    id: "p08",
+    title: "Quiet Hands",
+    category: "Wellness",
+    tag: "Massage Film",
+    format: "Brand Film · 50s",
+    blurb: "Cinematic film for a massage therapist — atmosphere, touch, and the room as part of the experience.",
+    videoId: "f_J0dgc9Lok",
+    accent: "gold",
+  },
+  {
+    id: "p09",
+    title: "Esthetic Lab",
+    category: "Beauty",
+    tag: "Esthetician",
+    format: "Brand Ad · 30s",
+    blurb: "Brand ad for an esthetics studio — clean, modern, confidence-forward.",
+    videoId: "5QGhpiJ13M4",
+    accent: "ink",
+  },
+  {
+    id: "p10",
+    title: "Maison Lumière",
+    category: "Product",
+    tag: "Beauty Campaign",
+    format: "Campaign Film · 60s",
+    blurb: "Editorial campaign film for a beauty house — light, skin, fabric, and quiet confidence.",
+    videoId: "YxOO0IYXg0o",
+    accent: "blue",
+  },
+  {
+    id: "p11",
+    title: "Capri Sun",
+    category: "Product",
+    tag: "Fragrance Film",
+    format: "Campaign Film · 45s",
+    blurb: "Fragrance campaign film — Mediterranean light, water, and skin as the canvas.",
+    videoId: "SlzMrZwsSqI",
+    accent: "gold",
+  },
+  {
+    id: "p12",
+    title: "Maison Chanel",
+    category: "Beauty",
+    tag: "Editorial",
+    format: "Editorial Film · 90s",
+    blurb: "Long-form editorial film — fashion-house energy applied to beauty storytelling.",
+    videoId: "MM7GHU-pJXM",
+    accent: "ink",
+  },
 ];
 
 /* ---------- FAQ ---------- */
@@ -267,7 +419,7 @@ export type QA = { q: string; a: string };
 export const FAQS: QA[] = [
   {
     q: "What businesses do you work with?",
-    a: "We work with beauty, wellness and self-care brands of every size — skincare, haircare, body-care, spas, salons, massage therapists, estheticians, lash & brow artists, nail businesses and related product and service brands.",
+    a: "We work with beauty, wellness and self-care brands of every size — skincare, haircare, body-care, beauty, spas, salons, massage therapists, estheticians, lash & brow artists, nail businesses and related product and service brands.",
   },
   {
     q: "Do you only create skincare content?",

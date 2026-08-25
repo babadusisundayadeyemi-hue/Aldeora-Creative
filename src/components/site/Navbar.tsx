@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
-import { CTAButton } from "./CTAButton";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { NAV_ITEMS, WA_DEFAULT } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +30,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -50,16 +49,16 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-500",
         scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-black/5 shadow-[0_4px_30px_-15px_rgba(0,0,0,0.15)]"
+          ? "bg-white/85 backdrop-blur-xl border-b border-black/[0.06]"
           : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:h-18 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-5 sm:h-[68px] sm:px-8 lg:px-12">
         {/* Logo */}
         <Link
           href="/"
           aria-label="Aldeora Creative — Home"
-          className="flex items-center transition-transform duration-300 hover:scale-[1.02]"
+          className="flex items-center transition-transform duration-300 hover:opacity-80"
         >
           <Logo />
         </Link>
@@ -71,10 +70,10 @@ export function Navbar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300",
+                  "relative rounded-full px-3.5 py-2 text-[13px] font-medium tracking-tight transition-colors duration-300",
                   isActive(item.href)
-                    ? "text-royal"
-                    : "text-ink/70 hover:text-ink"
+                    ? "text-ink"
+                    : "text-ink/55 hover:text-ink"
                 )}
               >
                 {item.label}
@@ -92,9 +91,16 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <CTAButton href={WA_DEFAULT} isWhatsApp size="sm" variant="gold">
+          <a
+            href={WA_DEFAULT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-shine group inline-flex h-10 items-center gap-2 rounded-full bg-ink px-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:bg-gold hover:text-ink"
+          >
+            <WhatsAppIcon className="h-3.5 w-3.5" />
             Get Started
-          </CTAButton>
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -117,7 +123,7 @@ export function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 bg-ink text-white lg:hidden"
           >
-            <div className="flex h-16 items-center justify-between px-5 sm:px-6">
+            <div className="flex h-16 items-center justify-between px-5 sm:px-8">
               <Logo tone="light" />
               <button
                 onClick={() => setOpen(false)}
@@ -132,48 +138,54 @@ export function Navbar() {
               initial="hidden"
               animate="visible"
               variants={{
-                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
+                visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
               }}
-              className="flex flex-col gap-1 px-5 pt-6 sm:px-6"
+              className="flex flex-col gap-0 px-5 pt-8 sm:px-8"
             >
               {NAV_ITEMS.map((item, i) => (
                 <motion.li
                   key={item.href}
                   variants={{
-                    hidden: { opacity: 0, x: -20 },
+                    hidden: { opacity: 0, x: -16 },
                     visible: { opacity: 1, x: 0 },
                   }}
                 >
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center justify-between border-b border-white/10 py-4 font-display text-2xl font-medium tracking-tight transition-colors",
-                      isActive(item.href) ? "text-gold" : "text-white/85 hover:text-white"
+                      "flex items-center justify-between border-b border-white/10 py-5 font-display text-3xl font-light tracking-tight transition-colors",
+                      isActive(item.href) ? "text-gold" : "text-white/90 hover:text-white"
                     )}
                   >
                     <span>{item.label}</span>
-                    <span className="font-sans text-xs text-white/40">
-                      0{i + 1}
+                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/40">
+                      /{item.href === "/" ? "home" : item.href.slice(1)}
                     </span>
                   </Link>
                 </motion.li>
               ))}
             </motion.ul>
 
-            <div className="px-5 pt-8 sm:px-6">
-              <CTAButton
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="px-5 pt-10 sm:px-8"
+            >
+              <a
                 href={WA_DEFAULT}
-                isWhatsApp
-                fullWidth
-                size="lg"
-                variant="gold"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-gold py-4 text-sm font-semibold uppercase tracking-[0.16em] text-ink"
               >
-                Get Started
-              </CTAButton>
+                <WhatsAppIcon className="h-4 w-4" />
+                Get Started on WhatsApp
+              </a>
               <p className="mt-4 text-center text-xs text-white/40">
-                Or call <a href="tel:+2347012749962" className="text-gold">+234 701 274 9962</a>
+                Or call{" "}
+                <a href="tel:+2347012749962" className="text-gold">+234 701 274 9962</a>
               </p>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

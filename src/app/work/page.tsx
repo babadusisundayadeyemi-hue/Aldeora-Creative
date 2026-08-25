@@ -3,10 +3,10 @@
 import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container, Section, Eyebrow } from "@/components/site/Section";
-import { CTAButton, TextLink } from "@/components/site/CTAButton";
+import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHeader } from "@/components/site/PageHeader";
-import { ProjectThumbnail } from "@/components/site/ProjectCard";
+import { VideoEmbed } from "@/components/site/VideoEmbed";
 import { ProjectDialog } from "@/components/site/ProjectDialog";
 import { PROJECTS, WA_DEFAULT, type Category, type Project } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -29,10 +29,10 @@ export default function WorkPage() {
         title={
           <>
             Selected work for{" "}
-            <span className="text-gold-gradient italic">beauty & wellness</span> brands.
+            <span className="italic text-gold">beauty & wellness</span> brands.
           </>
         }
-        description="A curated look at recent projects. Filter by category to explore how we apply premium AI video craft across product, service and brand formats."
+        description="A curated set of reference films across beauty, product, wellness and service brands. Tap any card to play. Each represents the kind of work Aldeora Creative produces in that category."
       />
 
       <Section tone="light">
@@ -49,10 +49,10 @@ export default function WorkPage() {
                     key={f}
                     onClick={() => setActive(f)}
                     className={cn(
-                      "group inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300",
+                      "group inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.16em] transition-all duration-300",
                       isActive
-                        ? "border-ink bg-ink text-white shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)]"
-                        : "border-black/10 bg-white text-ink/65 hover:border-ink/30 hover:text-ink"
+                        ? "border-ink bg-ink text-white"
+                        : "border-black/10 bg-white text-ink/55 hover:border-ink/30 hover:text-ink"
                     )}
                   >
                     {f}
@@ -71,33 +71,27 @@ export default function WorkPage() {
           </Reveal>
 
           {/* Grid */}
-          <motion.div
-            layout
-            className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          >
+          <motion.div layout className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {filtered.map((p, i) => (
-                <motion.button
+                <motion.div
                   layout
                   key={p.id}
-                  onClick={() => setSelected(p)}
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-                  className="text-left"
                 >
-                  <ProjectThumbnail project={p} index={i} />
-                </motion.button>
+                  <WorkCard project={p} index={i} onOpen={() => setSelected(p)} />
+                </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
 
           {/* Caption */}
           <Reveal>
-            <p className="mx-auto mt-12 max-w-2xl text-center text-xs text-ink/45">
-              Project thumbnails are visual representations. Actual client work is
-              shared during private briefings.
+            <p className="mx-auto mt-14 max-w-2xl text-center font-mono text-[11px] leading-relaxed text-ink/40">
+              The films above are real, embeddable reference clips used to demonstrate the style and quality Aldeora Creative produces. Actual client work is shared during private briefings.
             </p>
           </Reveal>
         </Container>
@@ -108,7 +102,7 @@ export default function WorkPage() {
         <Container>
           <div className="flex flex-col items-center gap-6 text-center">
             <Eyebrow tone="dark">Your brand, next.</Eyebrow>
-            <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight text-balance sm:text-4xl">
+            <h2 className="max-w-2xl font-display text-3xl font-light leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl">
               Want your work to look like this — or better?
             </h2>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -125,5 +119,50 @@ export default function WorkPage() {
 
       <ProjectDialog project={selected} onClose={() => setSelected(null)} />
     </>
+  );
+}
+
+function WorkCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  return (
+    <article className="group h-full">
+      {/* Video */}
+      <div className="relative">
+        <VideoEmbed
+          videoId={project.videoId}
+          title={project.title}
+          aspect="portrait"
+          label={`${project.category} · ${project.format}`}
+          className="ring-1 ring-black/[0.06]"
+        />
+      </div>
+
+      {/* Caption — clickable to open dialog */}
+      <button
+        onClick={onOpen}
+        className="mt-4 flex w-full items-start justify-between gap-3 text-left transition-opacity hover:opacity-70"
+        aria-label={`View details for ${project.title}`}
+      >
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-deep">
+              {project.tag}
+            </span>
+            <span className="h-px w-3 bg-ink/20" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/40">
+              {project.format}
+            </span>
+          </div>
+          <h3 className="mt-2 font-display text-lg font-medium tracking-tight text-ink">
+            {project.title}
+          </h3>
+          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
+            {project.blurb}
+          </p>
+        </div>
+        <span className="editorial-num text-lg text-ink/25">
+          0{index + 1}
+        </span>
+      </button>
+    </article>
   );
 }

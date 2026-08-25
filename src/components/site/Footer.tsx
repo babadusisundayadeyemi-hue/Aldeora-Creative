@@ -2,28 +2,64 @@
 
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { Instagram, Youtube, Mail, Phone } from "lucide-react";
+import { Instagram, Youtube, Mail, Phone, ArrowUpRight } from "lucide-react";
 import { TikTokIcon } from "./SocialIcons";
-import { BRAND, NAV_ITEMS } from "@/lib/site";
+import { BRAND, NAV_ITEMS, FOUNDER } from "@/lib/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function Footer() {
   return (
     <footer className="mt-auto bg-ink text-white">
-      {/* Top accent line */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      {/* Top accent line — subtle gold */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
-      <div className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* Brand */}
+      <div className="mx-auto w-full max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+        {/* Top row — large editorial statement + WhatsApp */}
+        <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
+              Aldeora Creative
+            </p>
+            <h2 className="mt-5 max-w-2xl font-display text-3xl font-light leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">
+              Let&apos;s make your brand{" "}
+              <span className="italic text-gold">look the way it should</span>.
+            </h2>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-white/55">
+              {BRAND.positioning} Reach out via WhatsApp and we&apos;ll reply within a few hours.
+            </p>
+          </div>
+
+          <div className="lg:col-span-5 lg:flex lg:items-center lg:justify-end">
+            <a
+              href={BRAND.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex w-full items-center justify-between gap-4 rounded-2xl border border-white/15 bg-white/[0.03] p-5 transition-all duration-300 hover:border-gold/40 hover:bg-white/[0.06] lg:w-auto"
+            >
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
+                <WhatsAppIcon className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
+                  WhatsApp us
+                </p>
+                <p className="mt-0.5 font-display text-lg font-medium tracking-tight">
+                  {BRAND.phoneDisplay}
+                </p>
+              </div>
+              <ArrowUpRight className="h-4 w-4 text-white/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold" />
+            </a>
+          </div>
+        </div>
+
+        {/* Middle row — brand + nav + contact */}
+        <div className="grid gap-12 py-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Logo tone="light" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
-              {BRAND.positioning} We create scroll-stopping AI-powered videos,
-              modern web design and digital solutions that make your brand look
-              premium.
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/55">
+              {BRAND.positioning} A creative studio founded by {FOUNDER.name}, producing premium AI-powered video for modern beauty, wellness and self-care brands.
             </p>
-            <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
+            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.28em] text-gold">
               {BRAND.tagline}
             </p>
 
@@ -52,7 +88,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/65 transition-colors hover:text-gold"
+                    className="text-sm text-white/55 transition-colors hover:text-gold"
                   >
                     {item.label}
                   </Link>
@@ -70,13 +106,13 @@ export function Footer() {
                   href={`https://wa.me/${BRAND.whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-white/80 transition-colors hover:text-gold"
+                  className="group flex items-center gap-3 text-white/70 transition-colors hover:text-gold"
                 >
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-colors group-hover:bg-gold group-hover:text-ink">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-colors group-hover:bg-gold group-hover:text-ink">
                     <WhatsAppIcon className="h-4 w-4" />
                   </span>
                   <span>
-                    <span className="block text-[10px] uppercase tracking-[0.24em] text-white/40">
+                    <span className="block font-mono text-[9px] uppercase tracking-[0.24em] text-white/40">
                       WhatsApp
                     </span>
                     {BRAND.phoneDisplay}
@@ -85,30 +121,14 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={`tel:${BRAND.phoneRaw}`}
-                  className="group flex items-center gap-3 text-white/80 transition-colors hover:text-gold"
-                >
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-colors group-hover:bg-gold group-hover:text-ink">
-                    <Phone className="h-4 w-4" />
-                  </span>
-                  <span>
-                    <span className="block text-[10px] uppercase tracking-[0.24em] text-white/40">
-                      Phone
-                    </span>
-                    {BRAND.phoneDisplay}
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
                   href={`mailto:${BRAND.email}`}
-                  className="group flex items-center gap-3 text-white/80 transition-colors hover:text-gold"
+                  className="group flex items-center gap-3 text-white/70 transition-colors hover:text-gold"
                 >
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-colors group-hover:bg-gold group-hover:text-ink">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-colors group-hover:bg-gold group-hover:text-ink">
                     <Mail className="h-4 w-4" />
                   </span>
                   <span>
-                    <span className="block text-[10px] uppercase tracking-[0.24em] text-white/40">
+                    <span className="block font-mono text-[9px] uppercase tracking-[0.24em] text-white/40">
                       Email
                     </span>
                     {BRAND.email}
@@ -120,12 +140,12 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/45">
+        <div className="flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[11px] text-white/40">
             © {BRAND.year} Aldeora Creative. All rights reserved.
           </p>
-          <p className="text-xs text-white/40">
-            Built with intention. Crafted for beauty, wellness & self-care brands.
+          <p className="font-mono text-[11px] text-white/35">
+            Founded by {FOUNDER.name}. Crafted for beauty, wellness &amp; self-care.
           </p>
         </div>
       </div>
@@ -135,7 +155,7 @@ export function Footer() {
 
 function FooterHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
+    <h3 className="mb-5 font-mono text-[10px] font-medium uppercase tracking-[0.28em] text-gold">
       {children}
     </h3>
   );
@@ -156,7 +176,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/70 ring-1 ring-white/10 transition-all duration-300 hover:bg-gold hover:text-ink hover:ring-gold"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/55 ring-1 ring-white/10 transition-all duration-300 hover:bg-gold hover:text-ink hover:ring-gold"
     >
       {children}
     </a>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Navbar } from "@/components/site/Navbar";
@@ -11,18 +11,25 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
+  axes: ["SOFT", "WONK", "opsz"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: "Aldeora Creative — AI Video for Beauty, Wellness & Self-Care Brands",
   description:
-    "Aldeora Creative creates scroll-stopping AI-powered video content, modern web design and digital solutions for beauty, wellness and self-care brands. Premium creative production.",
+    "Aldeora Creative is a creative studio led by Adeyemi Gold, producing AI-powered video content, web design and digital solutions for beauty, wellness and self-care brands.",
   keywords: [
     "AI video",
     "beauty video production",
@@ -32,12 +39,13 @@ export const metadata: Metadata = {
     "web design",
     "digital solutions",
     "Aldeora Creative",
+    "Adeyemi Gold",
   ],
-  authors: [{ name: "Aldeora Creative" }],
+  authors: [{ name: "Adeyemi Gold" }],
   openGraph: {
     title: "Aldeora Creative — AI Video for Beauty, Wellness & Self-Care",
     description:
-      "Scroll-stopping AI-powered video content for modern beauty, wellness and self-care brands.",
+      "A creative studio led by Adeyemi Gold. Scroll-stopping AI-powered video content for modern beauty, wellness and self-care brands.",
     siteName: "Aldeora Creative",
     type: "website",
   },
@@ -54,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>
