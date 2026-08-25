@@ -87,19 +87,19 @@ export default function ContactPage() {
 
               {/* WhatsApp banner */}
               <Reveal delay={0.2}>
-                <div className="mt-8 overflow-hidden rounded-2xl border border-[#25D366]/20 bg-gradient-to-br from-[#25D366]/5 to-transparent p-6">
+                <div className="mt-8 overflow-hidden rounded-2xl border border-[#25D366]/20 bg-gradient-to-br from-[#25D366]/5 to-transparent p-7">
                   <div className="flex items-start gap-4">
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
-                      <WhatsAppIcon className="h-6 w-6" />
+                    <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
+                      <WhatsAppIcon className="h-7 w-7" />
                     </span>
                     <div className="flex-1">
-                      <p className="font-display text-lg font-bold tracking-tight text-ink">
+                      <p className="font-display text-xl font-bold tracking-tight text-ink">
                         Prefer to chat?
                       </p>
-                      <p className="mt-1 text-sm text-ink/60">
+                      <p className="mt-2 text-base text-ink/60">
                         Tap below to open WhatsApp with a message ready to send.
                       </p>
-                      <div className="mt-4">
+                      <div className="mt-5">
                         <CTAButton href={WA_DEFAULT} isWhatsApp variant="whatsapp" showArrow size="md">
                           Chat With Us on WhatsApp
                         </CTAButton>
@@ -141,15 +141,15 @@ function ContactRow({
   const accentBg = accent === "gold" ? "bg-gold text-ink" : accent === "blue" ? "bg-royal text-white" : "bg-ink text-gold";
 
   const content = (
-    <div className="group flex items-center gap-4 rounded-xl border border-black/5 bg-white p-4 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_15px_40px_-20px_rgba(0,0,0,0.2)]">
-      <span className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${accentBg}`}>
+    <div className="group flex items-center gap-4 rounded-xl border border-black/5 bg-white p-5 transition-all duration-300 hover:border-gold/30 hover:shadow-[0_15px_40px_-20px_rgba(0,0,0,0.2)]">
+      <span className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${accentBg}`}>
         {icon}
       </span>
       <div className="min-w-0">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/40">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
           {label}
         </p>
-        <p className="mt-0.5 truncate text-sm font-semibold text-ink">{value}</p>
+        <p className="mt-1 truncate text-base font-semibold text-ink">{value}</p>
       </div>
     </div>
   );
@@ -204,13 +204,13 @@ function ContactForm() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <Eyebrow>Send a message</Eyebrow>
-          <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-ink">
+          <h3 className="mt-4 font-display text-3xl font-bold tracking-tight text-ink">
             Tell us about your project.
           </h3>
         </div>
       </div>
 
-      <form onSubmit={onSubmit} className="mt-7 space-y-5">
+      <form onSubmit={onSubmit} className="mt-8 space-y-6">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Name" name="name" required placeholder="Your name" />
           <Field label="Business Name" name="business" placeholder="Your business" />
@@ -219,7 +219,7 @@ function ContactForm() {
         <Field label="Email" name="email" type="email" required placeholder="you@brand.com" />
 
         <div className="space-y-2">
-          <Label htmlFor="need" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
+          <Label htmlFor="need" className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/60">
             What do you need? <span className="text-royal">*</span>
           </Label>
           <select
@@ -227,21 +227,20 @@ function ContactForm() {
             name="need"
             required
             defaultValue=""
-            className="h-12 w-full rounded-lg border border-black/10 bg-paper-soft px-4 text-sm text-ink transition-colors focus:border-royal focus:bg-white focus:outline-none focus:ring-2 focus:ring-royal/20"
+            className="h-14 w-full rounded-lg border border-black/10 bg-paper-soft px-4 text-base text-ink transition-colors focus:border-royal focus:bg-white focus:outline-none focus:ring-2 focus:ring-royal/20"
           >
             <option value="" disabled>Select a service…</option>
             <option>AI Video Content</option>
-            <option>Web Design</option>
-            <option>Digital Solutions</option>
-            <option>Starter Glow Package</option>
-            <option>Glow Growth Package</option>
-            <option>Brand Dominance Package</option>
+            <option>Product Video</option>
+            <option>Service Video</option>
+            <option>Brand Story Video</option>
+            <option>Social Media Content</option>
             <option>Not sure yet</option>
           </select>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
+          <Label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/60">
             Message <span className="text-royal">*</span>
           </Label>
           <Textarea
@@ -249,13 +248,13 @@ function ContactForm() {
             name="message"
             required
             placeholder="Tell us a bit about your brand and what you're looking for…"
-            className="min-h-[140px] resize-none border-black/10 bg-paper-soft focus:border-royal focus:bg-white"
+            className="min-h-[160px] resize-none border-black/10 bg-paper-soft text-base focus:border-royal focus:bg-white"
           />
         </div>
 
         {/* Submit */}
         <div className="flex flex-col items-start gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-ink/45">
+          <p className="text-sm text-ink/50">
             Submitting opens WhatsApp with your message pre-filled.
           </p>
           <button
@@ -331,7 +330,7 @@ function Field({
 }) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={name} className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
+      <Label htmlFor={name} className="text-xs font-semibold uppercase tracking-[0.18em] text-ink/60">
         {label} {required && <span className="text-royal">*</span>}
       </Label>
       <Input
@@ -340,7 +339,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="h-12 border-black/10 bg-paper-soft focus:border-royal focus:bg-white"
+        className="h-14 border-black/10 bg-paper-soft text-base focus:border-royal focus:bg-white"
       />
     </div>
   );

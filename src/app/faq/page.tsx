@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Minus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/site/Section";
 import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
@@ -20,7 +20,7 @@ export default function FAQPage() {
         eyebrow="FAQ"
         title={
           <>
-            Questions, <span className="text-gold-gradient italic">answered</span>.
+            Questions, <span className="italic text-gold">answered</span>.
           </>
         }
         description="Everything you might want to know before getting started. Still curious about something? Send us a WhatsApp message."
@@ -41,20 +41,20 @@ export default function FAQPage() {
                   value={`item-${i}`}
                   className="overflow-hidden border-b border-black/10 last:border-b-0"
                 >
-                  <AccordionTrigger className="group py-6 text-left hover:no-underline [&>svg:last-child]:hidden">
-                    <div className="flex w-full items-start gap-4 pr-4">
-                      <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink/5 font-display text-sm font-bold text-ink/40 transition-colors group-data-[state=open]:bg-gold group-data-[state=open]:text-ink">
+                  <AccordionTrigger className="group py-7 text-left hover:no-underline [&>svg:last-child]:hidden">
+                    <div className="flex w-full items-start gap-5 pr-4">
+                      <span className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink/5 font-display text-base font-bold text-ink/50 transition-colors group-data-[state=open]:bg-gold group-data-[state=open]:text-ink">
                         0{i + 1}
                       </span>
-                      <span className="font-display text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
+                      <span className="font-display text-xl font-medium leading-snug tracking-tight text-ink sm:text-2xl">
                         {faq.q}
                       </span>
                     </div>
-                    <span className="ml-auto inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-paper-mute text-ink transition-colors group-data-[state=open]:bg-ink group-data-[state=open]:text-gold">
-                      <Plus className="h-4 w-4 rotate-0 transition-transform duration-300 group-data-[state=open]:rotate-45" />
+                    <span className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-paper-mute text-ink transition-colors group-data-[state=open]:bg-ink group-data-[state=open]:text-gold">
+                      <Plus className="h-5 w-5 rotate-0 transition-transform duration-300 group-data-[state=open]:rotate-45" />
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-6 pl-12 pr-12 text-base leading-relaxed text-ink/65">
+                  <AccordionContent className="pb-7 pl-15 pr-12 text-lg leading-relaxed text-ink/65 sm:pl-16">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -69,10 +69,10 @@ export default function FAQPage() {
         <Container>
           <div className="flex flex-col items-center gap-6 text-center">
             <Eyebrow tone="dark">Still have questions?</Eyebrow>
-            <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight text-balance sm:text-4xl">
+            <h2 className="max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-balance sm:text-5xl">
               We&apos;re one message away.
             </h2>
-            <p className="max-w-xl text-sm text-white/65">
+            <p className="max-w-xl text-lg text-white/60">
               Tap below to chat with us on WhatsApp — we usually respond within a few hours.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">

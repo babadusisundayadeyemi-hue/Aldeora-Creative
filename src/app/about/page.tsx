@@ -18,7 +18,7 @@ export default function AboutPage() {
             About <span className="italic text-gold">Aldeora Creative</span>.
           </>
         }
-        description="A creative studio focused on helping modern brands communicate through visual content, AI video, web design and digital solutions."
+        description="A creative studio focused exclusively on producing premium AI-generated video content for beauty, wellness and self-care brands."
       />
 
       {/* Founder feature — Adeyemi Gold */}
@@ -53,19 +53,19 @@ function FounderFeature() {
                 <img
                   src={FOUNDER.photo}
                   alt={`${FOUNDER.name} — ${FOUNDER.role}`}
-                  className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/[0.06]"
+                  className="aspect-[4/5] w-full rounded-2xl object-cover"
                 />
                 {/* Caption overlay */}
-                <figcaption className="mt-4 flex items-baseline justify-between gap-4">
+                <figcaption className="mt-5 flex items-baseline justify-between gap-4">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold-deep">
+                    <p className="font-mono text-xs uppercase tracking-[0.24em] text-gold-deep">
                       Founder · Creative Director
                     </p>
-                    <p className="mt-1 font-display text-xl font-medium tracking-tight text-ink">
+                    <p className="mt-2 font-display text-2xl font-medium tracking-tight text-ink">
                       {FOUNDER.name}
                     </p>
                   </div>
-                  <span className="editorial-num text-2xl text-ink/20">01</span>
+                  <span className="editorial-num text-3xl text-ink/20">01</span>
                 </figcaption>
               </figure>
             </Reveal>
@@ -77,13 +77,13 @@ function FounderFeature() {
               <Eyebrow>Who&apos;s behind the studio</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 font-display text-3xl font-light leading-[1.1] tracking-tight text-balance sm:text-4xl lg:text-[44px]">
+              <h2 className="mt-6 font-display text-4xl font-light leading-[1.1] tracking-tight text-balance sm:text-5xl lg:text-[48px]">
                 {FOUNDER.name} founded Aldeora Creative to give beauty &amp; wellness brands the cinematic treatment they deserve.
               </h2>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-7 space-y-5 text-[15px] leading-relaxed text-ink/65 sm:text-base">
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink/65">
                 {FOUNDER.longBio.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
@@ -92,11 +92,11 @@ function FounderFeature() {
 
             {/* Quote pullout */}
             <Reveal delay={0.15}>
-              <blockquote className="mt-8 border-l-2 border-gold pl-5">
-                <p className="font-display text-xl font-light italic leading-snug tracking-tight text-ink sm:text-2xl">
+              <blockquote className="mt-9 border-l-2 border-gold pl-6">
+                <p className="font-display text-2xl font-light italic leading-snug tracking-tight text-ink sm:text-3xl">
                   {FOUNDER.quotes[0].text}
                 </p>
-                <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                <footer className="mt-4 font-mono text-xs uppercase tracking-[0.22em] text-ink/50">
                   — {FOUNDER.name}, {FOUNDER.quotes[0].context}
                 </footer>
               </blockquote>
@@ -104,13 +104,13 @@ function FounderFeature() {
 
             {/* Credentials */}
             <Reveal delay={0.2}>
-              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-black/[0.06] pt-6 sm:grid-cols-4">
+              <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-black/[0.06] pt-7 sm:grid-cols-4">
                 {FOUNDER.credentials.map((c) => (
                   <div key={c.label}>
-                    <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/40">
+                    <dt className="font-mono text-xs uppercase tracking-[0.2em] text-ink/45">
                       {c.label}
                     </dt>
-                    <dd className="mt-1 text-sm font-medium text-ink">{c.value}</dd>
+                    <dd className="mt-1.5 text-base font-medium text-ink">{c.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -142,7 +142,7 @@ function StudioStory() {
               <Eyebrow>The studio</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 font-display text-3xl font-light leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-6 font-display text-4xl font-light leading-tight tracking-tight text-ink sm:text-5xl">
                 A studio built for the way modern brands communicate.
               </h2>
             </Reveal>
@@ -150,23 +150,22 @@ function StudioStory() {
 
           <div className="lg:col-span-8">
             <Reveal delay={0.1}>
-              <div className="space-y-5 text-[15px] leading-relaxed text-ink/65 sm:text-base">
+              <div className="space-y-5 text-lg leading-relaxed text-ink/65">
                 <p>
                   Aldeora Creative exists because beauty, wellness and self-care
-                  brands deserve content that matches the quality of what they make —
-                  without the cost and friction of traditional production.
+                  brands deserve AI-generated video that matches the quality of what
+                  they make — without the cost and friction of traditional production.
                 </p>
                 <p>
-                  We combine creative direction, AI tooling and a strong sense of
+                  We combine creative direction with AI tooling and a strong sense of
                   brand craft to produce video that feels premium, on-voice and built
                   for the platforms your audience actually uses. Our work spans product,
-                  service, educational and brand-story formats — designed to look like
-                  the brands we partner with.
+                  service, educational and brand-story formats — all fully AI-generated.
                 </p>
                 <p>
                   We keep the process human. We listen first, direct with intent, and
                   deliver work that&apos;s both beautiful and useful. No fluff, no filler —
-                  just craft that moves your brand forward.
+                  just AI video craft that moves your brand forward.
                 </p>
               </div>
             </Reveal>
@@ -195,17 +194,17 @@ function ValuesSection() {
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
             <Reveal key={v.title} delay={i * 0.06}>
-              <article className="group relative h-full bg-white p-7 transition-colors duration-300 hover:bg-paper-soft">
+              <article className="group relative h-full bg-white p-8 transition-colors duration-300 hover:bg-paper-soft">
                 <div className="flex items-baseline justify-between">
-                  <span className="editorial-num text-2xl text-ink/25">
+                  <span className="editorial-num text-3xl text-ink/25">
                     0{i + 1}
                   </span>
-                  <v.icon className="h-5 w-5 text-ink/40 transition-colors duration-300 group-hover:text-gold" />
+                  <v.icon className="h-6 w-6 text-ink/40 transition-colors duration-300 group-hover:text-gold" />
                 </div>
-                <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-ink">
+                <h3 className="mt-7 font-display text-2xl font-medium tracking-tight text-ink">
                   {v.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/55">
+                <p className="mt-3 text-base leading-relaxed text-ink/60">
                   {v.desc}
                 </p>
               </article>
@@ -265,9 +264,9 @@ function WhoWeServe() {
         <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] sm:grid-cols-3 lg:grid-cols-4">
           {WHO_WE_SERVE.map((label, i) => (
             <Reveal key={label} delay={(i % 4) * 0.05}>
-              <div className="group flex h-full items-center gap-3 bg-ink p-5 transition-colors duration-300 hover:bg-ink-soft">
-                <span className="h-1 w-1 shrink-0 rounded-full bg-gold" />
-                <span className="text-sm font-medium text-white/85">{label}</span>
+              <div className="group flex h-full items-center gap-3 bg-ink p-6 transition-colors duration-300 hover:bg-ink-soft">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span className="text-base font-medium text-white/85">{label}</span>
               </div>
             </Reveal>
           ))}
@@ -275,8 +274,8 @@ function WhoWeServe() {
 
         <Reveal delay={0.2}>
           <div className="mt-12 flex flex-col items-center gap-5 text-center">
-            <p className="max-w-xl text-sm text-white/55">
-              If your brand lives in the beauty, wellness or self-care space, we&apos;d love to make content for you.
+            <p className="max-w-xl text-lg text-white/60">
+              If your brand lives in the beauty, wellness or self-care space, we&apos;d love to make AI video for you.
             </p>
             <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
               Work With Us
@@ -315,15 +314,15 @@ function FinalCTA() {
       <Container>
         <div className="flex flex-col items-center gap-6 rounded-2xl border border-black/[0.06] bg-gradient-to-br from-paper-soft to-white p-10 text-center shadow-sm sm:p-14">
           <LogoMark className="h-12 w-12" />
-          <h2 className="max-w-2xl font-display text-3xl font-light leading-tight tracking-tight text-balance sm:text-4xl">
+          <h2 className="max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-balance sm:text-5xl">
             Let&apos;s build something your audience can&apos;t scroll past.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
             <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
               Work With Us
             </CTAButton>
-            <CTAButton href="/packages" size="lg" variant="secondary">
-              View Packages
+            <CTAButton href="/contact" size="lg" variant="secondary">
+              Contact Us
             </CTAButton>
           </div>
         </div>

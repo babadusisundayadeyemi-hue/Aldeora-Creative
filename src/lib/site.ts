@@ -1,16 +1,21 @@
 /**
  * Aldeora Creative — Central site configuration
- * Single source of truth for brand info, navigation, packages, services,
- * FAQs, portfolio items (with real sample videos) and founder info.
  *
- * Portfolio videos are real, embeddable YouTube clips that represent the
- * kind of work Aldeora Creative produces. They are clearly labeled as
- * "reference films" so we never misrepresent them as our own.
+ * Single source of truth for brand info, navigation, packages, services,
+ * FAQs, portfolio items (with real AI-generated sample videos) and founder info.
+ *
+ * SCOPE: Aldeora Creative focuses EXCLUSIVELY on AI Video Content.
+ * No web design, no digital solutions — just AI-powered video.
+ *
+ * Portfolio videos are real, embeddable YouTube clips that are genuinely
+ * AI-generated (made with Sora, Runway, Veo, Kling, etc.) and represent
+ * the kind of work Aldeora Creative produces. They are clearly labeled
+ * as "AI reference films" so we never misrepresent them as our own.
  */
 
 export const BRAND = {
   name: "Aldeora Creative",
-  tagline: "AI Video · Web Design · Digital Solutions",
+  tagline: "AI Video Content",
   positioning: "AI Video Content for Beauty, Wellness & Self-Care Brands.",
   email: "hello@aldeoracreative.com",
   phoneDisplay: "+234 701 274 9962",
@@ -28,13 +33,12 @@ export const FOUNDER = {
   name: "Adeyemi Gold",
   role: "Founder & Creative Director",
   photo: "/founder/adeyemi-gold.jpg",
-  // Portrait is 896x1152 (3:4 portrait), bust-up studio shot.
   shortBio:
-    "Adeyemi Gold is the founder and creative director behind Aldeora Creative — a studio built to give beauty, wellness and self-care brands the kind of premium visual content usually reserved for big-budget labels.",
+    "Adeyemi Gold is the founder and creative director behind Aldeora Creative — a studio built to give beauty, wellness and self-care brands premium AI-powered video content usually reserved for big-budget labels.",
   longBio: [
-    "Adeyemi Gold founded Aldeora Creative with a single conviction: that beauty, wellness and self-care brands deserve the same cinematic treatment usually reserved for the world's biggest labels — without the production budgets those labels command.",
-    "Working at the intersection of creative direction, AI tooling and brand strategy, Adeyemi leads a studio that turns product shots and service rituals into scroll-stopping films. The work spans skincare, haircare, body-care, spa, salon, lash, brow and nail brands — each treated with the same attention to craft.",
-    "The approach is deliberate: combine human creative direction with AI-assisted production to deliver premium output, faster, and at a price point that makes ongoing content realistic for growing brands.",
+    "Adeyemi Gold founded Aldeora Creative with a single conviction: that beauty, wellness and self-care brands deserve the same cinematic video content usually reserved for the world's biggest labels — without the production budgets those labels command.",
+    "Working at the intersection of creative direction and AI tooling, Adeyemi leads a studio that turns product shots and service rituals into scroll-stopping AI-generated films. The work spans skincare, haircare, body-care, spa, salon, lash, brow and nail brands — each treated with the same attention to craft.",
+    "The approach is deliberate: combine human creative direction with AI-assisted production to deliver premium video output, faster, and at a price point that makes ongoing content realistic for growing brands.",
   ],
   quotes: [
     {
@@ -46,7 +50,7 @@ export const FOUNDER = {
     { label: "Founded", value: "2024" },
     { label: "Based", value: "Remote · Worldwide" },
     { label: "Focus", value: "Beauty · Wellness · Self-care" },
-    { label: "Medium", value: "AI-assisted video" },
+    { label: "Medium", value: "AI-generated video" },
   ],
 };
 
@@ -56,7 +60,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Packages", href: "/packages" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
@@ -71,7 +74,7 @@ export function waLink(message?: string): string {
 }
 
 export const WA_DEFAULT = waLink(
-  `Hello Aldeora Creative, I'd like to learn more about your services.`
+  `Hello Aldeora Creative, I'd like to learn more about your AI video services.`
 );
 
 export function waPackage(pkgName: string): string {
@@ -105,7 +108,7 @@ export const PACKAGES: Package[] = [
     description:
       "The perfect entry point to test premium AI video content for your brand.",
     features: [
-      "10 short-form videos",
+      "10 short-form AI videos",
       "Basic motion graphics",
       "Custom product & service visuals",
       "5 thumbnail designs",
@@ -125,11 +128,11 @@ export const PACKAGES: Package[] = [
     popular: true,
     badge: "Most Popular",
     description:
-      "Consistent monthly content designed to grow your audience and conversions.",
+      "Consistent monthly AI video content designed to grow your audience and conversions.",
     features: [
-      "12–15 short-form videos / month",
+      "12–15 short-form AI videos / month",
       "Product, service & educational videos",
-      "Talking-head style videos",
+      "Talking-head style AI videos",
       "Custom thumbnails",
       "Voiceovers",
       "Monthly content calendar",
@@ -145,12 +148,12 @@ export const PACKAGES: Package[] = [
     price: "$2,499",
     cadence: "/ month",
     description:
-      "Full-scale content engine for brands that want to dominate their category.",
+      "Full-scale AI video content engine for brands that want to dominate their category.",
     features: [
-      "20–30 videos / month",
+      "20–30 AI videos / month",
       "Product & service videos",
       "Educational + story-driven videos",
-      "Brand-specific characters & avatars",
+      "Brand-specific AI characters & avatars",
       "Brand-voice voiceovers",
       "Hooks + captions + thumbnails",
       "Content strategy + monthly plan",
@@ -163,7 +166,11 @@ export const PACKAGES: Package[] = [
   },
 ];
 
-/* ---------- Services ---------- */
+/* ---------- Services (AI Video ONLY) ---------- */
+/*
+ * Aldeora Creative focuses exclusively on AI Video Content.
+ * The "services" are the different AI video formats we produce.
+ */
 
 export type Service = {
   id: string;
@@ -172,7 +179,7 @@ export type Service = {
   description: string;
   items: string[];
   primary?: boolean;
-  icon: string; // lucide icon name
+  icon: string;
 };
 
 export const SERVICES: Service[] = [
@@ -181,49 +188,21 @@ export const SERVICES: Service[] = [
     title: "AI Video Content",
     short: "Scroll-stopping AI-powered videos for products, services, education and brand storytelling.",
     description:
-      "Our flagship service. We combine AI tools, motion design and creative direction to produce premium short-form video that makes beauty, wellness and self-care brands look cinematic — at a fraction of traditional production cost.",
+      "Our only service — and our obsession. We combine AI tools, motion design and creative direction to produce premium short-form AI video that makes beauty, wellness and self-care brands look cinematic, at a fraction of traditional production cost. Every format below is delivered as fully AI-generated video.",
     items: [
       "Product videos",
       "Service videos",
       "Educational videos",
-      "Talking-head videos",
+      "Talking-head AI videos",
       "Brand storytelling",
       "Social media videos",
     ],
     primary: true,
     icon: "Video",
   },
-  {
-    id: "web-design",
-    title: "Web Design",
-    short: "Modern responsive websites, landing pages and brand-focused web experiences.",
-    description:
-      "Clean, fast, conversion-focused websites that mirror the premium feel of your video content. Built to perform on every device and to convert visitors into customers.",
-    items: [
-      "Modern responsive websites",
-      "Landing pages",
-      "Business websites",
-      "Brand-focused web experiences",
-    ],
-    icon: "MonitorSmartphone",
-  },
-  {
-    id: "digital-solutions",
-    title: "Digital Solutions",
-    short: "Tailored digital creative solutions aligned to your business goals.",
-    description:
-      "From content systems to creative strategy, we design digital solutions that fit your specific business — not off-the-shelf templates.",
-    items: [
-      "Digital creative strategy",
-      "Content systems & workflows",
-      "Brand identity support",
-      "Cross-platform creative production",
-    ],
-    icon: "Sparkles",
-  },
 ];
 
-/* ---------- Services preview (homepage cards) ---------- */
+/* ---------- AI Video formats (homepage cards) ---------- */
 
 export type ServiceCard = {
   title: string;
@@ -239,37 +218,39 @@ export const SERVICE_CARDS: ServiceCard[] = [
   },
   {
     title: "Service Videos",
-    description: "Showcase treatments, sessions and experiences with elegant motion.",
+    description: "Showcase treatments, sessions and experiences with elegant AI motion.",
     icon: "Hand",
   },
   {
     title: "Educational Content",
-    description: "Simplify rituals, ingredients and routines into shareable explainers.",
+    description: "Simplify rituals, ingredients and routines into shareable AI explainers.",
     icon: "GraduationCap",
   },
   {
-    title: "Talking-Head Content",
+    title: "Talking-Head AI",
     description: "AI-presented brand narratives that feel human, polished and on-voice.",
     icon: "Mic",
   },
   {
     title: "Brand Story Videos",
-    description: "Cinematic storytelling that builds emotional connection to your brand.",
+    description: "Cinematic AI storytelling that builds emotional connection to your brand.",
     icon: "BookOpen",
   },
   {
     title: "Social Media Content",
-    description: "Reels, TikToks and Shorts engineered to stop the scroll.",
+    description: "AI Reels, TikToks and Shorts engineered to stop the scroll.",
     icon: "Share2",
   },
 ];
 
-/* ---------- Portfolio with real sample videos ---------- */
+/* ---------- Portfolio with REAL AI-generated videos ---------- */
 /*
  * Each portfolio entry includes a real, embeddable YouTube video that
- * represents the kind of work Aldeora Creative produces in that category.
- * Videos are clearly labeled as "Reference Film" on the work page so we
- * never misrepresent them as our own client work.
+ * is genuinely AI-generated (made with Sora, Runway, Veo, Kling, etc.)
+ * and represents the kind of work Aldeora Creative produces in that category.
+ * Videos are clearly labeled as "AI reference films" on the work page.
+ *
+ * Duration target: 15–45 seconds per film.
  */
 
 export type Category = "All" | "Beauty" | "Product" | "Wellness" | "Service";
@@ -280,13 +261,11 @@ export type Project = {
   category: Exclude<Category, "All">;
   tag: string;
   blurb: string;
-  /** Format we'd produce for this brief — e.g. "Reel · 30s" */
+  /** Format we'd produce for this brief — e.g. "AI Reel · 30s" */
   format: string;
-  /** Real YouTube video ID used as reference film */
+  /** Real YouTube video ID — must be AI-generated content */
   videoId: string;
   accent: "gold" | "blue" | "ink";
-  /** Optional author/credit for the reference film */
-  credit?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -294,123 +273,136 @@ export const PROJECTS: Project[] = [
     id: "p01",
     title: "Hydra Glow Serum",
     category: "Beauty",
-    tag: "Product Film",
-    format: "Reel · 30s",
-    blurb: "Cinematic product film for a skincare launch — macro textures, water motion and a confident brand reveal.",
-    videoId: "KTizya8wytU",
+    tag: "AI Product Film",
+    format: "AI Reel · 30s",
+    blurb: "AI-generated skincare commercial — macro textures, water motion and a confident brand reveal.",
+    videoId: "NNI16qTV_hM", // CeraVe AI-generated commercial
     accent: "gold",
   },
   {
     id: "p02",
     title: "Silk Ritual",
     category: "Wellness",
-    tag: "Spa Story",
-    format: "Brand Film · 60s",
-    blurb: "Slow, sensory brand story for a luxury spa — hands, water, candlelight, and quiet attention to detail.",
-    videoId: "H5PCLQSDTlA",
+    tag: "AI Spa Film",
+    format: "AI Brand Film · 30s",
+    blurb: "AI-generated luxury spa film — serene wellness cinematography, candlelight, and quiet attention to detail.",
+    videoId: "1qVmVXbx80U", // Luxury Spa AI Advertisement
     accent: "blue",
   },
   {
     id: "p03",
     title: "Crown Care",
     category: "Service",
-    tag: "Salon Reel",
-    format: "Reel · 25s",
-    blurb: "Service reel for a premium hair salon — cuts, color, finish, and the rhythm of the chair.",
-    videoId: "yE2IIOla62A",
+    tag: "AI Hair Reel",
+    format: "AI Reel · 30s",
+    blurb: "AI-generated hair salon transformation — wash, shine, and the rhythm of hair in motion.",
+    videoId: "sB6_30UxBAA", // Dirty Hair Wash ASMR AI Salon Transformation (Short, ~30s)
     accent: "gold",
   },
   {
     id: "p04",
     title: "Botanical Bloom",
     category: "Product",
-    tag: "Product Launch",
-    format: "Launch Film · 45s",
-    blurb: "Product launch film for a botanical body-care line — ingredients, texture and ritual.",
-    videoId: "1MJWJYuTohc",
+    tag: "AI Body Care Ad",
+    format: "AI Product Film · 30s",
+    blurb: "AI-generated beauty product ad — botanical ingredients, texture and ritual, 100% AI-generated.",
+    videoId: "GLfR71Jnez4", // This beauty product ad 100% AI-generated (Short, ~30s)
     accent: "blue",
   },
   {
     id: "p05",
     title: "Lash Atelier",
     category: "Beauty",
-    tag: "Lash Studio",
-    format: "Process Reel · 30s",
-    blurb: "Studio process film for a lash & brow artist — precision, patience and the final reveal.",
-    videoId: "uNpfhwSuuUk",
+    tag: "AI Lash Film",
+    format: "AI Reel · 30s",
+    blurb: "AI-generated lash extension ASMR experience — close-up beauty, precision, and calm.",
+    videoId: "0j3ojHlS9bs", // Relaxing Lash Extensions ASMR AI
     accent: "ink",
   },
   {
     id: "p06",
     title: "Glass Skin Facial",
     category: "Service",
-    tag: "Esthetician",
-    format: "Tutorial Reel · 35s",
-    blurb: "Step-by-step facial film for an esthetician — calm, instructional, visually satisfying.",
-    videoId: "QjA9iIAvTZY",
+    tag: "AI Skincare UGC",
+    format: "AI Reel · 30s",
+    blurb: "Luxury AI-generated skincare UGC ad — realistic beauty commercial created entirely with AI.",
+    videoId: "Ce4Jz2A3LmA", // Luxury AI Skincare UGC Ad
     accent: "gold",
   },
   {
     id: "p07",
-    title: "Nail Architecture",
-    category: "Service",
-    tag: "Nail Studio",
-    format: "Detail Reel · 25s",
-    blurb: "Macro detail reel for a nail design studio — color, finish, and architecture of the nail.",
-    videoId: "Tt_8B0fxuKE",
+    title: "Maison Lumière",
+    category: "Beauty",
+    tag: "AI Perfume Ad",
+    format: "AI Campaign Film · 30s",
+    blurb: "AI-generated luxury perfume commercial — cinematic fragrance ad with a premium brand reveal.",
+    videoId: "OT8cttp0C4w", // Luxury Perfume Commercial AI Cinematic Fragrance Ad 4K (Short, ~30s)
     accent: "blue",
   },
   {
     id: "p08",
     title: "Quiet Hands",
     category: "Wellness",
-    tag: "Massage Film",
-    format: "Brand Film · 50s",
-    blurb: "Cinematic film for a massage therapist — atmosphere, touch, and the room as part of the experience.",
-    videoId: "f_J0dgc9Lok",
+    tag: "AI Spa ASMR",
+    format: "AI Brand Film · 30s",
+    blurb: "AI-generated spa ASMR — delicate pad and cream massage, hyper-realistic and deeply calming.",
+    videoId: "Xz5RGzLXXjU", // AI generated spa ASMR
     accent: "gold",
   },
   {
     id: "p09",
-    title: "Esthetic Lab",
+    title: "Glow Edit",
     category: "Beauty",
-    tag: "Esthetician",
-    format: "Brand Ad · 30s",
-    blurb: "Brand ad for an esthetics studio — clean, modern, confidence-forward.",
-    videoId: "5QGhpiJ13M4",
+    tag: "AI Makeup Film",
+    format: "AI Short · 15s",
+    blurb: "AI-generated makeup transformation — foundation, eyeshadow, and winged liner, frame by frame.",
+    videoId: "wqvJ35fB9-4", // AI Does Your Makeup in 15 Seconds
     accent: "ink",
   },
   {
     id: "p10",
-    title: "Maison Lumière",
+    title: "Rouge Lumière",
     category: "Product",
-    tag: "Beauty Campaign",
-    format: "Campaign Film · 60s",
-    blurb: "Editorial campaign film for a beauty house — light, skin, fabric, and quiet confidence.",
-    videoId: "YxOO0IYXg0o",
-    accent: "blue",
-  },
-  {
-    id: "p11",
-    title: "Capri Sun",
-    category: "Product",
-    tag: "Fragrance Film",
-    format: "Campaign Film · 45s",
-    blurb: "Fragrance campaign film — Mediterranean light, water, and skin as the canvas.",
-    videoId: "SlzMrZwsSqI",
+    tag: "AI Lipstick Ad",
+    format: "AI Product Film · 30s",
+    blurb: "Cinematic AI-generated lipstick commercial — premium advertising style for beauty products.",
+    videoId: "7T88oi5i0Og", // Luxury Lipstick Commercial AI Generated
     accent: "gold",
   },
   {
+    id: "p11",
+    title: "Still Waters",
+    category: "Wellness",
+    tag: "AI Spa Film",
+    format: "AI Brand Film · 30s",
+    blurb: "AI-generated luxury spa film — calm, premium wellness environment for massage & spa brands.",
+    videoId: "S-8L0GxllhY", // Luxury AI Perfume Commercial Cinematic UGC (Short, ~30s) — used as spa/wellness aesthetic
+    accent: "blue",
+  },
+  {
     id: "p12",
-    title: "Maison Chanel",
-    category: "Beauty",
-    tag: "Editorial",
-    format: "Editorial Film · 90s",
-    blurb: "Long-form editorial film — fashion-house energy applied to beauty storytelling.",
-    videoId: "MM7GHU-pJXM",
+    title: "Aura Beauty Set",
+    category: "Product",
+    tag: "AI Beauty Ads",
+    format: "AI Campaign · 30s",
+    blurb: "Luxury AI-generated skincare commercial — cinematic beauty ad created entirely with AI tools.",
+    videoId: "HYdZ2tc1Upc", // Luxury AI Skincare Commercial Cinematic Beauty Ad (Short, ~30s)
     accent: "ink",
   },
 ];
+
+/**
+ * Hero showcase film — a single, strong AI-generated cinematic beauty
+ * commercial used in the homepage hero. Distinct from the portfolio
+ * projects above so the hero feels unique.
+ */
+export const HERO_VIDEO = {
+  videoId: "ngqY0cSRilw", // Luxury Skincare Serum Commercial Created with AI — Luxaicreations (Short, ~30s)
+  title: "Aurelle Serum",
+  tag: "AI Brand Film",
+  format: "AI Cinematic · 30s",
+  blurb: "A luxury skincare serum commercial created entirely with AI — cinematic product reveal, macro textures, and a premium brand world without a single camera.",
+};
 
 /* ---------- FAQ ---------- */
 
@@ -423,19 +415,23 @@ export const FAQS: QA[] = [
   },
   {
     q: "Do you only create skincare content?",
-    a: "No. Skincare is one of many categories we serve. We create video content for haircare, body-care, beauty, spa, wellness, salon, lash, brow, nail and self-care businesses alike.",
+    a: "No. Skincare is one of many categories we serve. We create AI video content for haircare, body-care, beauty, spa, wellness, salon, lash, brow, nail and self-care businesses alike.",
   },
   {
     q: "Can you create videos for services like massage and spa?",
-    a: "Yes. Service-based businesses like massage therapists, spas and salons are a core part of who we work with. We tailor the visual style to suit service experiences, not just products.",
+    a: "Yes. Service-based businesses like massage therapists, spas and salons are a core part of who we work with. We tailor the AI visual style to suit service experiences, not just products.",
+  },
+  {
+    q: "Are all your videos actually AI-generated?",
+    a: "Yes. Every video we produce is generated using AI tools (Sora, Runway, Veo, Kling and similar), combined with our creative direction and motion design. We do not shoot traditional video — the entire output is AI-generated.",
   },
   {
     q: "What platforms are your videos designed for?",
-    a: "Our videos are designed primarily for Reels, TikTok and YouTube Shorts. We can also deliver horizontal formats for website hero sections, ads and email campaigns on request.",
+    a: "Our AI videos are designed primarily for Reels, TikTok and YouTube Shorts. We can also deliver horizontal formats for website hero sections, ads and email campaigns on request.",
   },
   {
     q: "How does the process work?",
-    a: "After you reach out via WhatsApp or our contact form, we discuss your goals, gather brand references, then produce your videos using our AI-powered pipeline. You receive content for review and we apply revisions based on your package.",
+    a: "After you reach out via WhatsApp or our contact form, we discuss your goals, gather brand references, then produce your AI videos using our pipeline. You receive content for review and we apply revisions based on your package.",
   },
   {
     q: "How many revisions are included?",

@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 type VideoEmbedProps = {
   videoId: string;
   title: string;
-  poster?: string; // optional custom poster (YouTube hqdefault used by default)
+  poster?: string;
   className?: string;
   aspect?: "video" | "portrait" | "square" | "cinematic";
-  label?: string; // small label shown bottom-left
+  label?: string;
 };
 
 const aspectClass: Record<NonNullable<VideoEmbedProps["aspect"]>, string> = {
@@ -23,9 +23,9 @@ const aspectClass: Record<NonNullable<VideoEmbedProps["aspect"]>, string> = {
 /**
  * Lazy YouTube embed.
  *
- * Renders a poster thumbnail (YouTube's hqdefault) until clicked —
- * this avoids loading 12+ iframes on a portfolio page and keeps the
- * page fast. Clicking the poster loads the iframe with autoplay=1.
+ * Renders a poster thumbnail until clicked, then loads the iframe.
+ * The video fills its container edge-to-edge — no borders, no rings,
+ * no background layers showing through.
  *
  * Uses youtube-nocookie.com for privacy-friendly embedding.
  */
@@ -40,18 +40,16 @@ export function VideoEmbed({
   const [posterLoaded, setPosterLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Preload poster using Image() so we can fade it in nicely
+  // Preload poster so we can fade it in nicely
   useEffect(() => {
     if (posterLoaded) return;
     const img = new Image();
     img.onload = () => setPosterLoaded(true);
     img.src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-    // Fallback: if maxres fails (some videos), use hqdefault
     img.onerror = () => {
       const fallback = new Image();
       fallback.onload = () => setPosterLoaded(true);
       fallback.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-      // Last resort: mark as loaded after 1.5s anyway
       setTimeout(() => setPosterLoaded(true), 1500);
     };
   }, [videoId, posterLoaded]);
@@ -63,7 +61,8 @@ export function VideoEmbed({
     <div
       ref={containerRef}
       className={cn(
-        "group relative overflow-hidden rounded-xl bg-ink",
+        // No background color, no ring, no border — video fills entirely
+        "group relative overflow-hidden rounded-lg",
         aspectClass[aspect],
         className
       )}
@@ -82,9 +81,9 @@ export function VideoEmbed({
           type="button"
           onClick={() => setActivated(true)}
           aria-label={`Play video: ${title}`}
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 h-full w-full cursor-pointer"
         >
-          {/* Poster */}
+          {/* Poster — fills entire container */}
           <img
             src={posterUrl}
             onError={(e) => {
@@ -93,33 +92,34 @@ export function VideoEmbed({
             alt={title}
             loading="lazy"
             className={cn(
-              "absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-105",
+              "absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-[1.03]",
               posterLoaded ? "opacity-100" : "opacity-0"
             )}
           />
-          {/* Dark gradient overlay for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/20" />
+          {/* Subtle gradient overlay only at bottom for label legibility */}
+          {label && (
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+          )}
 
           {/* Play button */}
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="relative inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-ink shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:bg-gold">
-              <Play className="ml-0.5 h-5 w-5" fill="currentColor" />
-              <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-white/30" style={{ animationDuration: "2.5s" }} />
+              <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
             </span>
           </div>
 
           {/* Label */}
           {label && (
             <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3 text-left">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                   {label}
                 </p>
-                <p className="mt-1 line-clamp-2 text-sm font-semibold text-white/95">
+                <p className="mt-1.5 line-clamp-2 text-sm font-semibold text-white sm:text-base">
                   {title}
                 </p>
               </div>
-              <ExternalLink className="h-3.5 w-3.5 shrink-0 text-white/50" />
+              <ExternalLink className="h-4 w-4 shrink-0 text-white/60" />
             </div>
           )}
         </button>

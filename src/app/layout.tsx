@@ -29,15 +29,17 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Aldeora Creative — AI Video for Beauty, Wellness & Self-Care Brands",
   description:
-    "Aldeora Creative is a creative studio led by Adeyemi Gold, producing AI-powered video content, web design and digital solutions for beauty, wellness and self-care brands.",
+    "Aldeora Creative is a creative studio led by Adeyemi Gold, producing premium AI-generated video content for beauty, wellness and self-care brands.",
   keywords: [
     "AI video",
     "beauty video production",
     "wellness content",
     "self-care brands",
     "creative agency",
-    "web design",
-    "digital solutions",
+    "AI-generated video",
+    "Sora",
+    "Runway",
+    "Veo",
     "Aldeora Creative",
     "Adeyemi Gold",
   ],

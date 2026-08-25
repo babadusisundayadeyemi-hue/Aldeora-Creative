@@ -32,7 +32,7 @@ export default function WorkPage() {
             <span className="italic text-gold">beauty & wellness</span> brands.
           </>
         }
-        description="A curated set of reference films across beauty, product, wellness and service brands. Tap any card to play. Each represents the kind of work Aldeora Creative produces in that category."
+        description="A curated set of AI reference films across beauty, product, wellness and service brands. Tap any card to play. Each represents the kind of AI video Aldeora Creative produces in that category."
       />
 
       <Section tone="light">
@@ -49,16 +49,16 @@ export default function WorkPage() {
                     key={f}
                     onClick={() => setActive(f)}
                     className={cn(
-                      "group inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.16em] transition-all duration-300",
+                      "group inline-flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-[0.16em] transition-all duration-300",
                       isActive
                         ? "border-ink bg-ink text-white"
-                        : "border-black/10 bg-white text-ink/55 hover:border-ink/30 hover:text-ink"
+                        : "border-black/10 bg-white text-ink/60 hover:border-ink/30 hover:text-ink"
                     )}
                   >
                     {f}
                     <span
                       className={cn(
-                        "rounded-full px-1.5 py-0.5 text-[9px] font-bold",
+                        "rounded-full px-1.5 py-0.5 text-[10px] font-bold",
                         isActive ? "bg-gold text-ink" : "bg-paper-mute text-ink/50"
                       )}
                     >
@@ -71,7 +71,7 @@ export default function WorkPage() {
           </Reveal>
 
           {/* Grid */}
-          <motion.div layout className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div layout className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {filtered.map((p, i) => (
                 <motion.div
@@ -90,8 +90,8 @@ export default function WorkPage() {
 
           {/* Caption */}
           <Reveal>
-            <p className="mx-auto mt-14 max-w-2xl text-center font-mono text-[11px] leading-relaxed text-ink/40">
-              The films above are real, embeddable reference clips used to demonstrate the style and quality Aldeora Creative produces. Actual client work is shared during private briefings.
+            <p className="mx-auto mt-14 max-w-2xl text-center font-mono text-sm leading-relaxed text-ink/45">
+              The films above are real, embeddable AI-generated reference clips demonstrating the style and quality Aldeora Creative produces. Actual client work is shared during private briefings.
             </p>
           </Reveal>
         </Container>
@@ -102,15 +102,15 @@ export default function WorkPage() {
         <Container>
           <div className="flex flex-col items-center gap-6 text-center">
             <Eyebrow tone="dark">Your brand, next.</Eyebrow>
-            <h2 className="max-w-2xl font-display text-3xl font-light leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl">
+            <h2 className="max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-balance sm:text-5xl">
               Want your work to look like this — or better?
             </h2>
             <div className="flex flex-col gap-3 sm:flex-row">
               <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
                 Start Your Project
               </CTAButton>
-              <CTAButton href="/packages" size="lg" variant="outline-light">
-                View Packages
+              <CTAButton href="/contact" size="lg" variant="outline-light">
+                Contact Us
               </CTAButton>
             </div>
           </div>
@@ -125,41 +125,38 @@ export default function WorkPage() {
 function WorkCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
   return (
     <article className="group h-full">
-      {/* Video */}
-      <div className="relative">
-        <VideoEmbed
-          videoId={project.videoId}
-          title={project.title}
-          aspect="portrait"
-          label={`${project.category} · ${project.format}`}
-          className="ring-1 ring-black/[0.06]"
-        />
-      </div>
+      {/* Video — fills its container, no ring/border */}
+      <VideoEmbed
+        videoId={project.videoId}
+        title={project.title}
+        aspect="portrait"
+        label={`${project.category} · ${project.format}`}
+      />
 
       {/* Caption — clickable to open dialog */}
       <button
         onClick={onOpen}
-        className="mt-4 flex w-full items-start justify-between gap-3 text-left transition-opacity hover:opacity-70"
+        className="mt-5 flex w-full items-start justify-between gap-3 text-left transition-opacity hover:opacity-70"
         aria-label={`View details for ${project.title}`}
       >
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-deep">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-gold-deep">
               {project.tag}
             </span>
             <span className="h-px w-3 bg-ink/20" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/40">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-ink/45">
               {project.format}
             </span>
           </div>
-          <h3 className="mt-2 font-display text-lg font-medium tracking-tight text-ink">
+          <h3 className="mt-2.5 font-display text-xl font-medium tracking-tight text-ink">
             {project.title}
           </h3>
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink/55">
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">
             {project.blurb}
           </p>
         </div>
-        <span className="editorial-num text-lg text-ink/25">
+        <span className="editorial-num text-xl text-ink/25">
           0{index + 1}
         </span>
       </button>

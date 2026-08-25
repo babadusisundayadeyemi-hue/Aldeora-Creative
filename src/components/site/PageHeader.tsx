@@ -37,14 +37,14 @@ export function PageHeader({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
           className={cn(
-            "flex flex-col gap-5",
+            "flex flex-col gap-6",
             align === "center" && "items-center text-center"
           )}
         >
           {eyebrow && <Eyebrow tone={isDark ? "dark" : "light"}>{eyebrow}</Eyebrow>}
           <h1
             className={cn(
-              "font-display text-4xl font-light leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl xl:text-[72px]",
+              "font-display text-5xl font-light leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[80px]",
               align === "center" && "max-w-4xl"
             )}
           >
@@ -53,8 +53,8 @@ export function PageHeader({
           {description && (
             <p
               className={cn(
-                "max-w-2xl text-base leading-relaxed sm:text-lg",
-                isDark ? "text-white/55" : "text-ink/55",
+                "max-w-2xl text-lg leading-relaxed sm:text-xl",
+                isDark ? "text-white/60" : "text-ink/60",
                 align === "center" && "mx-auto text-pretty"
               )}
             >
