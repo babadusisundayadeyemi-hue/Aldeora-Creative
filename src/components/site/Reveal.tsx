@@ -14,28 +14,22 @@ type RevealProps = {
 };
 
 /**
- * Scroll-triggered reveal wrapper.
- *
- * Uses framer-motion's `useInView` with a generous margin so elements animate
- * in slightly before they're fully visible. If IntersectionObserver hasn't
- * fired within 800ms of mount (e.g. element already in viewport on load, or
- * observer not supported), the content becomes visible as a fallback.
+ * Scroll-triggered reveal — slow and refined.
+ * Uses a generous margin so elements animate in slightly before
+ * they're fully visible. Fallback visible after 800ms if IO doesn't fire.
  */
 export function Reveal({
   children,
   className,
   delay = 0,
-  y = 20,
+  y = 16,
   once = true,
   as = "div",
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once, margin: "0px 0px -10% 0px" });
+  const inView = useInView(ref, { once, margin: "0px 0px -8% 0px" });
   const [fallbackVisible, setFallbackVisible] = useState(false);
 
-  // Fallback: if IntersectionObserver doesn't fire within 800ms, show content.
-  // This protects against environments where IO doesn't work (headless
-  // renderers, some crawlers, reduced-motion users).
   useEffect(() => {
     if (inView) return;
     const t = setTimeout(() => setFallbackVisible(true), 800);
@@ -50,7 +44,7 @@ export function Reveal({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         delay,
         ease: [0.22, 0.61, 0.36, 1],
       },

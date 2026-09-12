@@ -11,7 +11,7 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12", className)}>
+    <div className={cn("mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-16", className)}>
       {children}
     </div>
   );
@@ -35,7 +35,7 @@ export function Section({
       ? "bg-paper-soft text-ink"
       : "bg-white text-ink";
   return (
-    <section id={id} className={cn("relative py-16 sm:py-20 lg:py-28", toneClass, className)}>
+    <section id={id} className={cn("relative py-20 sm:py-24 lg:py-32", toneClass, className)}>
       {children}
     </section>
   );
@@ -53,12 +53,12 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2.5 font-mono text-xs font-medium uppercase tracking-[0.28em]",
-        tone === "dark" ? "text-gold" : "text-ink/60",
+        "inline-flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.3em]",
+        tone === "dark" ? "text-gold" : "text-ink/50",
         className
       )}
     >
-      <span className="h-px w-7 bg-current opacity-50" />
+      <span className="h-px w-8 bg-current opacity-40" />
       {children}
     </span>
   );
@@ -82,7 +82,7 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        "flex flex-col gap-5",
+        "flex flex-col gap-6",
         align === "center" && "items-center text-center",
         className
       )}
@@ -90,8 +90,8 @@ export function SectionHeading({
       {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
       <h2
         className={cn(
-          "font-display text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl lg:text-[52px]",
-          align === "center" && "max-w-3xl"
+          "font-display text-4xl font-light leading-[1.08] tracking-tight sm:text-5xl lg:text-[56px]",
+          align === "center" && "max-w-3xl text-balance"
         )}
       >
         {title}
@@ -99,9 +99,9 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-lg leading-relaxed sm:text-xl",
-            tone === "dark" ? "text-white/60" : "text-ink/60",
-            align === "center" && "mx-auto"
+            "max-w-xl text-lg leading-relaxed",
+            tone === "dark" ? "text-white/55" : "text-ink/55",
+            align === "center" && "mx-auto text-pretty"
           )}
         >
           {description}

@@ -27,34 +27,24 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aldeora Creative — AI Video for Beauty, Wellness & Self-Care Brands",
+  title: "Aldeora Creative — Premium AI Visual Content for Beauty & Wellness Brands",
   description:
-    "Aldeora Creative is a creative studio led by Adeyemi Gold, producing premium AI-generated video content for beauty, wellness and self-care brands.",
+    "Aldeora Creative is a visual content studio creating premium AI-assisted video for beauty, skincare, haircare, wellness and self-care brands. Founded by Adeyemi Gold.",
   keywords: [
     "AI video",
     "beauty video production",
-    "wellness content",
-    "self-care brands",
-    "creative agency",
-    "AI-generated video",
-    "Sora",
-    "Runway",
-    "Veo",
+    "skincare content",
+    "wellness video",
+    "creative studio",
     "Aldeora Creative",
     "Adeyemi Gold",
   ],
   authors: [{ name: "Adeyemi Gold" }],
   openGraph: {
-    title: "Aldeora Creative — AI Video for Beauty, Wellness & Self-Care",
-    description:
-      "A creative studio led by Adeyemi Gold. Scroll-stopping AI-powered video content for modern beauty, wellness and self-care brands.",
+    title: "Aldeora Creative — Premium AI Visual Content",
+    description: "We create premium visual content that makes brands look more valuable.",
     siteName: "Aldeora Creative",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aldeora Creative",
-    description: "AI Video for Beauty, Wellness & Self-Care Brands.",
   },
 };
 

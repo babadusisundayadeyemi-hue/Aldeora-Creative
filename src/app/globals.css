@@ -5,34 +5,24 @@
 
 /* =========================================================
    ALDEORA CREATIVE — Premium Editorial Design System
-   Inspired by Stodio (minimal creative agency template) +
-   Awwwards beauty SOTDs + Behance luxury portfolios.
-
-   Principles:
-   - Black/white foundation, deep blue primary, light gold accent
-   - Editorial typography: Fraunces (serif display) + Inter (sans)
-   - Generous whitespace, asymmetric grids
-   - Slow, refined animations
-   - 60% less text — visual storytelling over words
+   Inspired by Stodio (Webflow) + luxury beauty campaigns.
+   Black + White foundation | Sky Blue accent | Light Gold highlight
    ========================================================= */
 
 @theme inline {
   /* Brand palette */
   --color-ink: #0A0A0A;
-  --color-ink-soft: #141414;
-  --color-ink-mute: #1C1C1C;
-  --color-ink-line: #2A2A2A;
-  --color-royal: #1557B0;      /* Deep Blue — primary accent */
-  --color-royal-soft: #2A6BC4;
-  --color-royal-deep: #0F4490;
-  --color-gold: #C9A227;       /* Gold — premium highlight */
-  --color-gold-soft: #D8B84F;
-  --color-gold-light: #E8D58A; /* Light gold */
-  --color-gold-deep: #A88517;
+  --color-ink-soft: #161616;
+  --color-ink-mute: #1E1E1E;
   --color-paper: #FFFFFF;
   --color-paper-soft: #FAFAFA;
-  --color-paper-mute: #F4F4F4;
-  --color-paper-line: #ECECEC;
+  --color-paper-mute: #F5F5F5;
+  --color-sky: #5B9BD5;
+  --color-sky-soft: #7AB0E0;
+  --color-sky-deep: #3A7BB8;
+  --color-gold: #C9A961;
+  --color-gold-soft: #D9BC7E;
+  --color-gold-deep: #A88E45;
 
   /* shadcn tokens */
   --color-background: var(--background);
@@ -59,14 +49,13 @@
   --font-display: var(--font-fraunces);
   --font-mono: var(--font-jetbrains);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
 }
 
 :root {
-  --radius: 0.5rem;
   --background: #FFFFFF;
   --foreground: #0A0A0A;
   --card: #FFFFFF;
@@ -75,37 +64,37 @@
   --popover-foreground: #0A0A0A;
   --primary: #0A0A0A;
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F4F4;
+  --secondary: #F5F5F5;
   --secondary-foreground: #0A0A0A;
-  --muted: #F4F4F4;
+  --muted: #F5F5F5;
   --muted-foreground: #6B6B6B;
-  --accent: #1557B0;
+  --accent: #5B9BD5;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #ECECEC;
-  --input: #ECECEC;
-  --ring: #1557B0;
+  --border: #E8E8E8;
+  --input: #E8E8E8;
+  --ring: #5B9BD5;
 }
 
 .dark {
   --background: #0A0A0A;
   --foreground: #FFFFFF;
-  --card: #141414;
+  --card: #161616;
   --card-foreground: #FFFFFF;
   --popover: #0A0A0A;
   --popover-foreground: #FFFFFF;
   --primary: #FFFFFF;
   --primary-foreground: #0A0A0A;
-  --secondary: #1C1C1C;
+  --secondary: #1E1E1E;
   --secondary-foreground: #FFFFFF;
-  --muted: #1C1C1C;
+  --muted: #1E1E1E;
   --muted-foreground: #A1A1A1;
-  --accent: #C9A227;
+  --accent: #C9A961;
   --accent-foreground: #0A0A0A;
   --destructive: oklch(0.704 0.191 22.216);
   --border: rgba(255, 255, 255, 0.10);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #C9A227;
+  --ring: #C9A961;
 }
 
 @layer base {
@@ -121,30 +110,30 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
   ::selection {
     background: #0A0A0A;
-    color: #C9A227;
+    color: #C9A961;
   }
   h1, h2, h3, h4 {
     font-feature-settings: "ss01", "liga";
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
   }
 }
 
 /* ============== Utility classes ============== */
 .font-display {
   font-family: var(--font-display), Georgia, serif;
-  font-feature-settings: "ss01", "ss02", "liga";
+  font-feature-settings: "ss01", "liga";
 }
 
 .text-balance { text-wrap: balance; }
 .text-pretty  { text-wrap: pretty; }
 
-/* Premium gold gradient text — used sparingly */
+/* Gold gradient text — used very sparingly */
 .text-gold-gradient {
-  background: linear-gradient(120deg, #C9A227 0%, #E8D58A 45%, #C9A227 100%);
+  background: linear-gradient(120deg, #C9A961 0%, #E8D49E 45%, #C9A961 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -152,23 +141,17 @@
 
 /* Subtle grain — only on dark hero sections */
 .bg-grain {
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
   background-size: 3px 3px;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
-  border-radius: 999px;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.15);
-}
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 999px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
 
-/* Animated link underline */
+/* Link underline animation */
 .link-underline {
   position: relative;
 }
@@ -195,10 +178,10 @@
   will-change: transform;
 }
 .card-lift:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
-/* Button shine sweep — used sparingly */
+/* Button shine — used sparingly */
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -208,43 +191,28 @@
   position: absolute;
   top: 0;
   left: -120%;
-  width: 80%;
+  width: 70%;
   height: 100%;
   background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   transform: skewX(-20deg);
   transition: left .9s cubic-bezier(.2,.8,.2,1);
 }
-.btn-shine:hover::before {
-  left: 130%;
-}
+.btn-shine:hover::before { left: 130%; }
+
+/* No-scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* Editorial number marker */
 .editorial-num {
   font-family: var(--font-display), Georgia, serif;
   font-feature-settings: "ss01", "lnum";
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
 }
 
-/* Hide scrollbar for filter pills */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-/* Video background — for hero */
-.video-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* Smooth fade-in for images */
-.img-fade {
-  opacity: 0;
-  transition: opacity .8s ease;
-}
-.img-fade.img-loaded {
-  opacity: 1;
+/* Slow fade-in for premium feel */
+@keyframes slowFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
