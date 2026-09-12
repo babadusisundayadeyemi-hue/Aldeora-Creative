@@ -4,16 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =========================================================
-   ALDEORA CREATIVE — Editorial Design System
-   Inspired by Awwwards beauty SOTDs (Truekind, Koba) +
-   Behance luxury creative agency portfolios.
+   ALDEORA CREATIVE — Premium Editorial Design System
+   Inspired by Stodio (minimal creative agency template) +
+   Awwwards beauty SOTDs + Behance luxury portfolios.
 
    Principles:
-   - Disciplined palette: black/white as primary, blue + gold
-     as restrained accents (gold especially used sparingly)
-   - Editorial typography: Fraunces (serif display) + Inter
-   - Generous whitespace, asymmetric grids, larger imagery
-   - Real video embeds over decorative graphics
+   - Black/white foundation, deep blue primary, light gold accent
+   - Editorial typography: Fraunces (serif display) + Inter (sans)
+   - Generous whitespace, asymmetric grids
+   - Slow, refined animations
+   - 60% less text — visual storytelling over words
    ========================================================= */
 
 @theme inline {
@@ -22,18 +22,19 @@
   --color-ink-soft: #141414;
   --color-ink-mute: #1C1C1C;
   --color-ink-line: #2A2A2A;
-  --color-royal: #1557B0;
+  --color-royal: #1557B0;      /* Deep Blue — primary accent */
   --color-royal-soft: #2A6BC4;
   --color-royal-deep: #0F4490;
-  --color-gold: #C9A227;
+  --color-gold: #C9A227;       /* Gold — premium highlight */
   --color-gold-soft: #D8B84F;
+  --color-gold-light: #E8D58A; /* Light gold */
   --color-gold-deep: #A88517;
   --color-paper: #FFFFFF;
   --color-paper-soft: #FAFAFA;
   --color-paper-mute: #F4F4F4;
   --color-paper-line: #ECECEC;
 
-  /* shadcn tokens remapped to brand */
+  /* shadcn tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -152,19 +153,19 @@
 /* Subtle grain — only on dark hero sections */
 .bg-grain {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
   background-size: 3px 3px;
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.18);
+  background: rgba(0,0,0,0.15);
   border-radius: 999px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.15);
 }
 
 /* Animated link underline */
@@ -181,23 +182,23 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
 }
 .link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-/* Card hover lift */
+/* Card hover lift — subtle */
 .card-lift {
-  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s cubic-bezier(.2,.8,.2,1), border-color .5s;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s;
   will-change: transform;
 }
 .card-lift:hover {
   transform: translateY(-4px);
 }
 
-/* Button shine sweep — used sparingly on primary CTAs */
+/* Button shine sweep — used sparingly */
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -209,24 +210,13 @@
   left: -120%;
   width: 80%;
   height: 100%;
-  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.30) 50%, transparent 100%);
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   transform: skewX(-20deg);
-  transition: left .8s cubic-bezier(.2,.8,.2,1);
+  transition: left .9s cubic-bezier(.2,.8,.2,1);
 }
 .btn-shine:hover::before {
   left: 130%;
 }
-
-/* Section divider */
-.divider-gold {
-  height: 1px;
-  width: 48px;
-  background: linear-gradient(90deg, #C9A227, transparent);
-}
-
-/* No-scrollbar */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* Editorial number marker */
 .editorial-num {
@@ -236,30 +226,25 @@
   font-weight: 400;
 }
 
-/* Image cover — smooth fade-in on load */
-.img-cover {
+/* Hide scrollbar for filter pills */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Video background — for hero */
+.video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  z-index: 0;
 }
 
-/* Hide default image alt flicker before fade */
+/* Smooth fade-in for images */
 .img-fade {
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity .8s ease;
 }
 .img-fade.img-loaded {
   opacity: 1;
-}
-
-/* Editorial section spacing for asymmetric layouts */
-.editorial-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1.5rem;
-}
-@media (max-width: 768px) {
-  .editorial-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
-  }
 }

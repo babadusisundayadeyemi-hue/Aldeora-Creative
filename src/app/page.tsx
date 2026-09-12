@@ -2,469 +2,298 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  Package,
-  Hand,
-  GraduationCap,
-  Mic,
-  BookOpen,
-  Share2,
-  ArrowUpRight,
-  Play,
-} from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Container, Section, Eyebrow, SectionHeading } from "@/components/site/Section";
 import { CTAButton, TextLink } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoEmbed } from "@/components/site/VideoEmbed";
-import {
-  BRAND,
-  FOUNDER,
-  HERO_VIDEO,
-  PROJECTS,
-  SERVICE_CARDS,
-  WA_DEFAULT,
-} from "@/lib/site";
-
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Package,
-  Hand,
-  GraduationCap,
-  Mic,
-  BookOpen,
-  Share2,
-};
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import { BRAND, FOUNDER, SERVICES, PROJECTS, PROCESS_STEPS, TESTIMONIALS, WA_DEFAULT } from "@/lib/site";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar />
+      <BrandIntro />
       <ServicesPreview />
-      <ShowcaseReel />
-      <PortfolioPreview />
-      <FounderTeaser />
+      <FeaturedWork />
+      <Process />
+      <TestimonialPreview />
       <FinalCTA />
     </>
   );
 }
 
-/* ---------------- HERO (NO VIDEO — clean brand composition) ---------------- */
+/* ============== HERO — Cinematic video, minimal text ============== */
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-ink text-white">
-      {/* Background — subtle, disciplined */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 80% at 75% 0%, rgba(21,87,176,0.20), transparent 50%), radial-gradient(60% 50% at 100% 100%, rgba(201,162,39,0.14), transparent 55%), #0A0A0A",
-          }}
-        />
-        <div className="bg-grain absolute inset-0 opacity-40" />
-      </div>
+    <section className="relative min-h-[90vh] overflow-hidden bg-ink text-white">
+      {/* Background video — autoplay, muted, loop, no controls */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover opacity-60"
+        poster="/founder/adeyemi-gold.jpg"
+      >
+        <source src="/videos/hero-serum.mp4" type="video/mp4" />
+      </video>
 
-      <Container className="relative z-10 grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
-        {/* Left: copy */}
-        <div className="lg:col-span-7">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-          >
-            <Eyebrow tone="dark">
-              <span className="text-gold">●</span> Aldeora Creative — AI Video Studio
-            </Eyebrow>
-          </motion.div>
+      {/* Dark gradient for text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-transparent to-transparent" />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 0.61, 0.36, 1] }}
-            className="mt-7 font-display text-[44px] font-light leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-[68px] xl:text-[76px]"
-          >
-            AI video for{" "}
-            <span className="italic text-gold">beauty, wellness</span>{" "}
-            &amp; self-care brands.
-          </motion.h1>
+      <Container className="relative z-10 flex min-h-[90vh] flex-col justify-center py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 0.61, 0.36, 1] }}
+          className="max-w-3xl"
+        >
+          {/* Brand name */}
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-gold">
+            {BRAND.name}
+          </p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-7 max-w-xl text-lg leading-relaxed text-white/65 sm:text-xl"
-          >
-            We create scroll-stopping, AI-generated video that makes your products,
-            services and brand look premium — without the cost of traditional production.
-          </motion.p>
+          {/* Headline */}
+          <h1 className="mt-6 font-display text-5xl font-light leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[88px]">
+            AI-powered visual content for brands that want to{" "}
+            <span className="italic text-gold">stand out</span>.
+          </h1>
 
+          {/* Short supporting text */}
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/70 sm:text-xl">
+            Premium video content for beauty, wellness and lifestyle brands.
+          </p>
+
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
-              Get Started
-            </CTAButton>
-            <CTAButton href="/work" size="lg" variant="outline-light">
+            <CTAButton href="/work" size="lg" variant="gold" showArrow>
               View Our Work
             </CTAButton>
+            <CTAButton href="/contact" size="lg" variant="outline-light">
+              Let's Work Together
+            </CTAButton>
           </motion.div>
-
-          {/* Founder attribution */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="mt-14 flex items-center gap-4 border-t border-white/10 pt-7"
-          >
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-white/45">
-              Founded by
-            </span>
-            <span className="font-display text-xl font-medium tracking-tight text-white">
-              {FOUNDER.name}
-            </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-white/45">
-              Creative Director
-            </span>
-          </motion.div>
-        </div>
-
-        {/* Right: hero AI video showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-          className="lg:col-span-5"
-        >
-          <HeroVideoShowcase />
         </motion.div>
       </Container>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/40">Scroll</span>
+          <div className="h-10 w-px bg-white/20" />
+        </div>
+      </motion.div>
     </section>
   );
 }
 
-/**
- * Hero video showcase — a single, strong AI-generated cinematic beauty
- * commercial. The video fills its container edge-to-edge with no
- * overlays, rings, or background layers showing through.
- */
-function HeroVideoShowcase() {
+/* ============== BRAND INTRO — Very short ============== */
+
+function BrandIntro() {
   return (
-    <div className="relative mx-auto w-full max-w-md">
-      {/* Eyebrow label above the video */}
-      <div className="mb-4 flex items-center justify-between">
-        <span className="font-mono text-xs uppercase tracking-[0.24em] text-white/45">
-          Now Showing — {HERO_VIDEO.tag}
-        </span>
-        <span className="font-mono text-xs uppercase tracking-[0.24em] text-gold">
-          {HERO_VIDEO.format}
-        </span>
-      </div>
-
-      <VideoEmbed
-        videoId={HERO_VIDEO.videoId}
-        title={HERO_VIDEO.title}
-        aspect="portrait"
-        label={HERO_VIDEO.tag}
-      />
-
-      {/* Caption */}
-      <div className="mt-5 flex items-center justify-between gap-4">
-        <div>
-          <p className="font-display text-lg font-medium tracking-tight text-white">
-            {HERO_VIDEO.title}
-          </p>
-          <p className="mt-1.5 text-sm text-white/50">
-            AI-generated reference film · 100% AI
-          </p>
-        </div>
-        <Link
-          href="/work"
-          className="group inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.18em] text-gold transition-colors hover:text-gold-soft"
-        >
-          All Work
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------- TRUST BAR ---------------- */
-
-function TrustBar() {
-  return (
-    <Section tone="paper" className="py-14 sm:py-16">
+    <Section tone="light" className="py-20 sm:py-24 lg:py-32">
       <Container>
-        <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
-          {[
-            { k: "AI-Powered", v: "Creative pipeline" },
-            { k: "Premium", v: "Cinematic quality" },
-            { k: "Multi-platform", v: "Reels · TikTok · Shorts" },
-            { k: "Brand-safe", v: "On-voice production" },
-          ].map((s, i) => (
-            <Reveal key={s.k} delay={i * 0.08}>
-              <div>
-                <p className="font-display text-2xl font-light tracking-tight text-ink sm:text-3xl">
-                  {s.k}
-                </p>
-                <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-ink/50">
-                  {s.v}
-                </p>
-              </div>
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <Reveal>
+              <Eyebrow>The Studio</Eyebrow>
             </Reveal>
-          ))}
+            <Reveal delay={0.05}>
+              <h2 className="mt-6 font-display text-4xl font-light leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                We create premium visual content that makes brands{" "}
+                <span className="italic text-royal">look more valuable</span>.
+              </h2>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-4">
+            <Reveal delay={0.1}>
+              <p className="text-lg leading-relaxed text-ink/55">
+                A creative studio led by {FOUNDER.name}, producing AI-powered video for modern brands.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </Container>
     </Section>
   );
 }
 
-/* ---------------- SERVICES PREVIEW ---------------- */
+/* ============== SERVICES PREVIEW — Visual, minimal text ============== */
 
 function ServicesPreview() {
   return (
-    <Section tone="light">
+    <Section tone="paper">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <SectionHeading
-              eyebrow="AI Video Formats"
-              title={
-                <>
-                  Six AI formats to{" "}
-                  <span className="italic text-royal">stop the scroll</span>.
-                </>
-              }
-              description="Every format below is delivered as fully AI-generated video — designed to look premium and convert across every platform your audience lives on."
+              eyebrow="What We Create"
+              title={<>Four ways we make your brand <span className="italic text-royal">look premium</span>.</>}
             />
           </div>
           <div className="lg:col-span-5 lg:flex lg:justify-end">
-            <TextLink href="/services" tone="blue">
-              All Services
-            </TextLink>
+            <TextLink href="/services" tone="blue">Explore Services</TextLink>
           </div>
         </div>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICE_CARDS.map((card, i) => {
-            const Icon = iconMap[card.icon] ?? Play;
-            return (
-              <Reveal key={card.title} delay={(i % 3) * 0.06}>
-                <article className="group relative h-full bg-white p-8 transition-colors duration-300 hover:bg-paper-soft">
-                  <div className="flex items-baseline justify-between">
-                    <span className="editorial-num text-3xl text-ink/30">
-                      0{i + 1}
-                    </span>
-                    <Icon className="h-6 w-6 text-ink/40 transition-colors duration-300 group-hover:text-gold" />
-                  </div>
-                  <h3 className="mt-7 font-display text-2xl font-medium tracking-tight text-ink">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-relaxed text-ink/60">
-                    {card.description}
-                  </p>
-                  <div className="mt-7">
-                    <TextLink href="/services" tone="blue">
-                      Learn More
-                    </TextLink>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
-        </div>
-      </Container>
-    </Section>
-  );
-}
-
-/* ---------------- SHOWCASE REEL — large featured video ---------------- */
-
-function ShowcaseReel() {
-  // Featured film — AI-generated perfume campaign
-  const featured = PROJECTS.find((p) => p.id === "p07")!; // Maison Lumière — AI Perfume Ad
-  return (
-    <Section tone="dark" className="py-16 sm:py-20 lg:py-28">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <Eyebrow tone="dark">Featured · {featured.category}</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-6 font-display text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl lg:text-[52px]">
-                {featured.title}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-6 text-lg leading-relaxed text-white/60">
-                {featured.blurb}
-              </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs uppercase tracking-[0.2em] text-white/45">
-                <span><span className="text-gold">Format</span> · {featured.format}</span>
-                <span><span className="text-gold">Tag</span> · {featured.tag}</span>
-                <span><span className="text-gold">Category</span> · {featured.category}</span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-9">
-                <CTAButton href="/work" size="lg" variant="outline-light" showArrow>
-                  View All Work
-                </CTAButton>
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="lg:col-span-7">
-            <Reveal delay={0.1}>
-              <VideoEmbed
-                videoId={featured.videoId}
-                title={featured.title}
-                aspect="cinematic"
-                label={`Featured Film · ${featured.format}`}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </Container>
-    </Section>
-  );
-}
-
-/* ---------------- PORTFOLIO PREVIEW ---------------- */
-
-function PortfolioPreview() {
-  const featured = PROJECTS.slice(0, 6);
-  return (
-    <Section tone="light">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <SectionHeading
-              eyebrow="Selected Work"
-              title={
-                <>
-                  A look at the{" "}
-                  <span className="italic text-royal">craft</span>.
-                </>
-              }
-              description="A glimpse of recent AI reference films across beauty, product, wellness and service brands. Tap any card to play."
-            />
-          </div>
-          <div className="lg:col-span-5 lg:flex lg:justify-end">
-            <TextLink href="/work" tone="blue">
-              View All Work
-            </TextLink>
-          </div>
-        </div>
-
-        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p, i) => (
-            <Reveal key={p.id} delay={(i % 3) * 0.08}>
-              <PortfolioCardSmall project={p} index={i} />
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((service, i) => (
+            <Reveal key={service.id} delay={(i % 4) * 0.06}>
+              <Link href="/services" className="group block h-full bg-white p-8 transition-colors duration-300 hover:bg-paper-soft">
+                <span className="editorial-num text-3xl text-ink/25">0{i + 1}</span>
+                <h3 className="mt-6 font-display text-2xl font-medium tracking-tight text-ink">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-ink/55">
+                  {service.short}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.18em] text-royal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  Learn More <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
+      </Container>
+    </Section>
+  );
+}
 
-        <div className="mt-14 flex justify-center">
-          <CTAButton href="/work" size="lg" variant="primary" showArrow>
-            View All Work
-          </CTAButton>
+/* ============== FEATURED WORK — Editorial, not generic grid ============== */
+
+function FeaturedWork() {
+  const featured = PROJECTS.slice(0, 4);
+  return (
+    <Section tone="dark">
+      <Container>
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <SectionHeading
+              tone="dark"
+              eyebrow="Selected Work"
+              title={<>A look at the <span className="italic text-gold">craft</span>.</>}
+            />
+          </div>
+          <div className="lg:col-span-5 lg:flex lg:justify-end">
+            <TextLink href="/work" tone="gold">View All Work</TextLink>
+          </div>
+        </div>
+
+        {/* Editorial layout — different sizes */}
+        <div className="mt-14 grid gap-6 lg:grid-cols-12">
+          {featured.map((p, i) => (
+            <Reveal key={p.id} delay={i * 0.08} className={
+              i === 0 ? "lg:col-span-7" :
+              i === 1 ? "lg:col-span-5" :
+              i === 2 ? "lg:col-span-5" :
+              "lg:col-span-7"
+            }>
+              <div className="group">
+                <VideoEmbed
+                  videoId={p.videoId}
+                  title={p.title}
+                  aspect={i === 0 || i === 3 ? "video" : "portrait"}
+                  label={`${p.category} · ${p.format}`}
+                />
+                <div className="mt-5 flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.22em] text-gold">{p.category}</p>
+                    <h3 className="mt-2 font-display text-xl font-medium tracking-tight text-white">{p.title}</h3>
+                    <p className="mt-1 text-sm text-white/50">{p.description}</p>
+                  </div>
+                  <span className="editorial-num text-xl text-white/25">0{i + 1}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </Section>
   );
 }
 
-function PortfolioCardSmall({ project, index }: { project: typeof PROJECTS[number]; index: number }) {
+/* ============== PROCESS — Short, visual ============== */
+
+function Process() {
   return (
-    <article className="group">
-      <VideoEmbed
-        videoId={project.videoId}
-        title={project.title}
-        aspect="portrait"
-        label={`${project.category} · ${project.format}`}
-      />
-      <div className="mt-5 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-gold-deep">
-            {project.tag}
-          </p>
-          <h3 className="mt-2 font-display text-xl font-medium tracking-tight text-ink">
-            {project.title}
-          </h3>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">
-            {project.blurb}
-          </p>
+    <Section tone="light">
+      <Container>
+        <SectionHeading
+          align="center"
+          eyebrow="How We Work"
+          title={<>Four steps from <span className="italic text-royal">brief to broadcast</span>.</>}
+          className="mx-auto"
+        />
+
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+          {PROCESS_STEPS.map((step, i) => (
+            <Reveal key={step.n} delay={i * 0.08}>
+              <div className="h-full bg-white p-8">
+                <span className="editorial-num text-4xl text-gold/40">{step.n}</span>
+                <h3 className="mt-5 font-display text-2xl font-medium tracking-tight text-ink">{step.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-ink/55">{step.desc}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
-        <span className="editorial-num text-xl text-ink/25">
-          0{index + 1}
-        </span>
-      </div>
-    </article>
+      </Container>
+    </Section>
   );
 }
 
-/* ---------------- FOUNDER TEASER ---------------- */
+/* ============== TESTIMONIAL PREVIEW ============== */
 
-function FounderTeaser() {
+function TestimonialPreview() {
+  const t = TESTIMONIALS[0];
   return (
-    <Section tone="dark">
+    <Section tone="paper">
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
-          {/* Photo */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-7">
             <Reveal>
-              <div className="relative overflow-hidden rounded-2xl">
-                <img
-                  src={FOUNDER.photo}
-                  alt={`${FOUNDER.name} — ${FOUNDER.role}`}
-                  className="aspect-[4/5] w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                  <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.24em] text-gold">
-                      Founder
-                    </p>
-                    <p className="mt-2 font-display text-2xl font-medium tracking-tight text-white">
-                      {FOUNDER.name}
-                    </p>
-                    <p className="mt-1 text-sm text-white/60">{FOUNDER.role}</p>
-                  </div>
+              <Eyebrow>Reviews</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <blockquote className="mt-6">
+                <p className="font-display text-3xl font-light leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-[44px]">
+                  <span className="text-gold">"</span>{t.quote}<span className="text-gold">"</span>
+                </p>
+              </blockquote>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-8 flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-ink/10">
+                  <span className="font-display text-lg text-ink/40">{t.name.charAt(0)}</span>
+                </div>
+                <div>
+                  <p className="font-display text-lg font-medium text-ink">{t.name}</p>
+                  <p className="text-sm text-ink/50">{t.role} · {t.business}</p>
                 </div>
               </div>
             </Reveal>
           </div>
-
-          {/* Copy */}
-          <div className="lg:col-span-7">
-            <Reveal>
-              <Eyebrow tone="dark">Who&apos;s behind the studio</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-6 font-display text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl lg:text-[52px]">
-                <span className="italic text-gold">&ldquo;Premium</span> isn&apos;t a budget.
-                It&apos;s a decision about how your brand deserves to look.&rdquo;
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/60">
-                {FOUNDER.shortBio}
-              </p>
-            </Reveal>
+          <div className="lg:col-span-5">
             <Reveal delay={0.15}>
-              <div className="mt-9">
-                <CTAButton href="/about" size="lg" variant="outline-light" showArrow>
-                  Meet the Founder
-                </CTAButton>
+              <p className="text-lg leading-relaxed text-ink/55">
+                Real reviews from real clients will appear here. We're collecting testimonials from the brands we've worked with.
+              </p>
+              <div className="mt-8">
+                <TextLink href="/reviews" tone="blue">Read All Reviews</TextLink>
               </div>
             </Reveal>
           </div>
@@ -474,34 +303,41 @@ function FounderTeaser() {
   );
 }
 
-/* ---------------- FINAL CTA ---------------- */
+/* ============== FINAL CTA ============== */
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      <Container className="py-20 sm:py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative overflow-hidden bg-ink text-white">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover opacity-20"
+      >
+        <source src="/videos/hero-serum.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
+
+      <Container className="relative z-10 py-20 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <Eyebrow>Ready when you are</Eyebrow>
+            <Eyebrow tone="dark" className="justify-center">Let's create</Eyebrow>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-              Ready to make your brand{" "}
-              <span className="italic text-royal">look better</span> online?
+              Let's create something{" "}
+              <span className="italic text-gold">beautiful</span>.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-ink/55">
-              Let&apos;s create AI video content your audience wants to stop and watch.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
-                Start Your Project
+              <CTAButton href="/contact" size="lg" variant="gold" showArrow>
+                Start a Project
               </CTAButton>
-              <CTAButton href="/contact" size="lg" variant="ghost">
-                Contact Us
+              <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="outline-light">
+                Chat on WhatsApp
               </CTAButton>
             </div>
           </Reveal>

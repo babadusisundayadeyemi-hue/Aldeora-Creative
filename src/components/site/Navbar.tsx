@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { NAV_ITEMS, WA_DEFAULT } from "@/lib/site";
@@ -15,7 +15,6 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
 
-  // Close mobile menu when route changes
   if (pathname !== lastPath) {
     setLastPath(pathname);
     if (open) setOpen(false);
@@ -48,8 +47,8 @@ export function Navbar() {
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-500",
           scrolled
-            ? "bg-white/90 backdrop-blur-xl border-b border-black/[0.06] shadow-[0_4px_24px_-12px_rgba(0,0,0,0.1)]"
-            : "bg-white/70 backdrop-blur-md"
+            ? "bg-white/90 backdrop-blur-xl border-b border-black/[0.06]"
+            : "bg-white/60 backdrop-blur-md"
         )}
       >
         <nav className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-5 sm:h-[72px] sm:px-8 lg:px-12">
@@ -57,7 +56,7 @@ export function Navbar() {
           <Link
             href="/"
             aria-label="Aldeora Creative — Home"
-            className="flex items-center transition-transform duration-300 hover:opacity-80"
+            className="flex items-center transition-opacity duration-300 hover:opacity-70"
           >
             <Logo />
           </Link>
@@ -69,10 +68,10 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "relative rounded-full px-4 py-2.5 text-sm font-medium tracking-tight transition-colors duration-300",
+                    "relative px-4 py-2.5 text-sm font-medium tracking-tight transition-colors duration-300",
                     isActive(item.href)
                       ? "text-ink"
-                      : "text-ink/55 hover:text-ink"
+                      : "text-ink/50 hover:text-ink"
                   )}
                 >
                   {item.label}
@@ -86,19 +85,15 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <a
-              href={WA_DEFAULT}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-shine group inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:bg-gold hover:text-ink"
+            <Link
+              href="/contact"
+              className="btn-shine group inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:bg-royal"
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              Get Started
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+              Let's Work Together
+            </Link>
           </div>
 
-          {/* Mobile hamburger — large touch target */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(true)}
             aria-label="Open menu"
@@ -109,14 +104,12 @@ export function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile overlay menu — OUTSIDE header so it's not trapped in
-          the header's stacking context. Rendered at root level. */}
+      {/* Mobile overlay — OUTSIDE header to avoid stacking context trap */}
       {open && (
         <div
           className="fixed inset-0 z-[100] flex flex-col lg:hidden"
           style={{ backgroundColor: "#0A0A0A" }}
         >
-          {/* Header */}
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/10 px-5 sm:h-[72px] sm:px-8">
             <Logo tone="light" />
             <button
@@ -128,7 +121,6 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* Nav links — scrollable */}
           <nav className="flex-1 overflow-y-auto px-5 py-6 sm:px-8">
             <ul className="flex flex-col">
               {NAV_ITEMS.map((item) => (
@@ -150,20 +142,16 @@ export function Navbar() {
             </ul>
           </nav>
 
-          {/* Footer CTA — pinned at bottom */}
           <div className="shrink-0 border-t border-white/10 p-5 sm:p-8">
-            <a
-              href={WA_DEFAULT}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="flex w-full items-center justify-center gap-2 rounded-full bg-gold py-4 text-base font-semibold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-gold-deep"
             >
-              <WhatsAppIcon className="h-5 w-5" />
-              Get Started
-            </a>
+              Let's Work Together
+            </Link>
             <p className="mt-4 text-center text-sm text-white/50">
-              Or call{" "}
-              <a href="tel:+2347012749962" className="text-gold">+234 701 274 9962</a>
+              Or{" "}
+              <a href={WA_DEFAULT} target="_blank" rel="noopener noreferrer" className="text-gold">chat on WhatsApp</a>
             </p>
           </div>
         </div>

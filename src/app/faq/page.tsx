@@ -6,49 +6,40 @@ import { CTAButton } from "@/components/site/CTAButton";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHeader } from "@/components/site/PageHeader";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FAQS, WA_DEFAULT } from "@/lib/site";
+import { WA_DEFAULT } from "@/lib/site";
+
+const FAQS = [
+  { q: "What businesses do you work with?", a: "Beauty, wellness, skincare, haircare, spa, salon, massage, lifestyle and related brands." },
+  { q: "Are all your videos AI-generated?", a: "Yes. Every video is created using AI tools combined with human art direction. No traditional production." },
+  { q: "What platforms are your videos for?", a: "Reels, TikTok, YouTube Shorts. We also deliver horizontal formats for websites and ads on request." },
+  { q: "How does the process work?", a: "Brief → Creative Direction → AI Production → Delivery. Simple, fast, premium." },
+  { q: "How do I get started?", a: "Tap any CTA button — it opens WhatsApp with a pre-filled message so we can discuss your project." },
+  { q: "Do you work with brands outside beauty and wellness?", a: "We focus on beauty, wellness and lifestyle. If your brand is in this space, we'd love to work with you." },
+];
 
 export default function FAQPage() {
   return (
     <>
       <PageHeader
         eyebrow="FAQ"
-        title={
-          <>
-            Questions, <span className="italic text-gold">answered</span>.
-          </>
-        }
-        description="Everything you might want to know before getting started. Still curious about something? Send us a WhatsApp message."
+        title={<>Questions, <span className="italic text-gold">answered</span>.</>}
+        description="Everything you need to know before getting started."
       />
 
       <Section tone="light">
         <Container className="max-w-3xl">
           <Reveal>
-            <Accordion
-              type="single"
-              collapsible
-              defaultValue="item-0"
-              className="w-full"
-            >
+            <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
               {FAQS.map((faq, i) => (
-                <AccordionItem
-                  key={faq.q}
-                  value={`item-${i}`}
-                  className="overflow-hidden border-b border-black/10 last:border-b-0"
-                >
+                <AccordionItem key={faq.q} value={`item-${i}`} className="overflow-hidden border-b border-black/10 last:border-b-0">
                   <AccordionTrigger className="group py-7 text-left hover:no-underline [&>svg:last-child]:hidden">
                     <div className="flex w-full items-start gap-5 pr-4">
                       <span className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink/5 font-display text-base font-bold text-ink/50 transition-colors group-data-[state=open]:bg-gold group-data-[state=open]:text-ink">
                         0{i + 1}
                       </span>
-                      <span className="font-display text-xl font-medium leading-snug tracking-tight text-ink sm:text-2xl">
-                        {faq.q}
-                      </span>
+                      <span className="font-display text-xl font-medium leading-snug tracking-tight text-ink sm:text-2xl">{faq.q}</span>
                     </div>
                     <span className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-paper-mute text-ink transition-colors group-data-[state=open]:bg-ink group-data-[state=open]:text-gold">
                       <Plus className="h-5 w-5 rotate-0 transition-transform duration-300 group-data-[state=open]:rotate-45" />
@@ -64,24 +55,16 @@ export default function FAQPage() {
         </Container>
       </Section>
 
-      {/* Still have questions */}
       <Section tone="dark" className="py-16 sm:py-20">
         <Container>
           <div className="flex flex-col items-center gap-6 text-center">
             <Eyebrow tone="dark">Still have questions?</Eyebrow>
-            <h2 className="max-w-2xl font-display text-4xl font-light leading-tight tracking-tight text-balance sm:text-5xl">
-              We&apos;re one message away.
+            <h2 className="max-w-xl font-display text-4xl font-light leading-tight tracking-tight text-balance sm:text-5xl">
+              We're one message away.
             </h2>
-            <p className="max-w-xl text-lg text-white/60">
-              Tap below to chat with us on WhatsApp — we usually respond within a few hours.
-            </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>
-                Chat With Us on WhatsApp
-              </CTAButton>
-              <CTAButton href="/contact" size="lg" variant="outline-light">
-                Contact Page
-              </CTAButton>
+              <CTAButton href={WA_DEFAULT} isWhatsApp size="lg" variant="gold" showArrow>Chat on WhatsApp</CTAButton>
+              <CTAButton href="/contact" size="lg" variant="outline-light">Contact Page</CTAButton>
             </div>
           </div>
         </Container>
